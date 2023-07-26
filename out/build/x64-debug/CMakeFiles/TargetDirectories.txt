@@ -1,3 +1,0 @@
-C:/Users/john9/OneDrive/Desktop/RadiationModeling/G4-Brems/out/build/x64-debug/CMakeFiles/G4-Brems.dir
-C:/Users/john9/OneDrive/Desktop/RadiationModeling/G4-Brems/out/build/x64-debug/CMakeFiles/edit_cache.dir
-C:/Users/john9/OneDrive/Desktop/RadiationModeling/G4-Brems/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
