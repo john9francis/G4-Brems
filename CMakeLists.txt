@@ -1,7 +1,7 @@
-﻿# CMakeList.txt : CMake project for G4-Brems, include source and define
+﻿# CMakeList.txt : CMake project for G4_Brems, include source and define
 # project specific logic here.
 #
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.16...3.21)
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
@@ -9,7 +9,7 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-project ("G4-Brems")
+project(G4_Brems)
 
 # TODO: Add tests and install targets if needed.
 
@@ -32,6 +32,7 @@ endif()
 include(${Geant4_USE_FILE})
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
+
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
 # NB: headers are included so they will show up in IDEs
@@ -41,20 +42,21 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
 #----------------------------------------------------------------------------
 # Add sources and headers to this project's executable.
-add_executable (G4-Brems "G4-Brems.cc" "G4-Brems.hh" ${sources} ${headers})
+add_executable (G4_Brems "G4-Brems.cc" ${sources} ${headers})
+target_link_libraries(G4_Brems ${Geant4_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Set standard to C++20
 if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET G4-Brems PROPERTY CXX_STANDARD 20)
+  set_property(TARGET G4_Brems PROPERTY CXX_STANDARD 20)
 endif()
 
 #----------------------------------------------------------------------------
 # Copy all the mac files from "mac_files" directory into the
 # same directory as the executable.
-file(GLOB G4-Brems-SCRIPTS ${PROJECT_SOURCE_DIR}/mac_files/*)
+file(GLOB G4_Brems-SCRIPTS ${PROJECT_SOURCE_DIR}/mac_files/*)
 
-foreach(_script ${G4-Brems-SCRIPTS})
+foreach(_script ${G4_Brems-SCRIPTS})
   get_filename_component(_script_name ${_script} NAME)
   configure_file(
 	  ${_script}
@@ -69,5 +71,5 @@ if(WIN32)
   # remove Debug and other unnecessary configurations
   set(CMAKE_CONFIGURATION_TYPES "Release" CACHE INTERNAL "")
   # https://stackoverflow.com/a/37994396/1801749
-  set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT G4-Brems)
+  set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT G4_Brems)
 endif()
