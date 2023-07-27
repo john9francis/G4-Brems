@@ -5,7 +5,7 @@ A Geant4 Model of Bremsstrahlung or "braking radiation." In this model I will mi
 # Measurements
 - Electron energies = 6 MeV or 10 MeV based on the equation $U (V) = E_{electron} (eV)$ [1](#sources) In other words, a 6 MV beam of a linac would produce 6 MeV electrons.
 - Electron beam width: 1 mm [2](#sources)
-- From target to detector: ?
+- From target to detector: 10 mm
 
 
 # Sources
