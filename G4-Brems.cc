@@ -4,6 +4,8 @@
 #include "G4UImanager.hh"
 #include "G4UIExecutive.hh"
 #include "G4RunManagerFactory.hh"
+#include "G4VisExecutive.hh"
+#include "G4ScoringManager.hh"
 
 int main(int argc, char** argv)
 {
@@ -26,6 +28,17 @@ int main(int argc, char** argv)
 	
 
 
+	// ======================================================================
+	// OTHER CLASSES:
+	// Vismanager, scoringmanager, etc.
+	// ======================================================================
+
+	G4VisManager* visManager = new G4VisExecutive;
+	visManager->Initialize();
+
+	G4ScoringManager::GetScoringManager();
+
+
 	// START UI =============================================================
 
 	// get pointer to UI manager
@@ -43,6 +56,10 @@ int main(int argc, char** argv)
 		ui->SessionStart();
 		delete ui;
 	}
+
+	// clean up
+	delete visManager;
+	delete runManager;
 
 	return 0;
 }
