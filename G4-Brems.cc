@@ -3,14 +3,30 @@
 
 #include "G4UImanager.hh"
 #include "G4UIExecutive.hh"
+#include "G4RunManagerFactory.hh"
 
 int main(int argc, char** argv)
 {
-	// Start (or don't) a UI
+	// Initialize (or don't) a UI
 	G4UIExecutive* ui = nullptr;
 	if (argc == 1) {
 		ui = new G4UIExecutive(argc, argv);
 	}
+
+	// ======================================================================
+	// RunManager, + 3 Required additions:
+	// PrimaryGeneratorAction,
+	// PhysicsList,
+	// DetectorConstruction.
+	// ======================================================================
+	
+	// create default runmanager
+	auto* runManager =
+		G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
+	
+
+
+	// START UI =============================================================
 
 	// get pointer to UI manager
 	G4UImanager* UImanager = G4UImanager::GetUIpointer();
