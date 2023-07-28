@@ -6,6 +6,11 @@
 #include "G4RunManagerFactory.hh"
 #include "G4VisExecutive.hh"
 #include "G4ScoringManager.hh"
+#include "QBBC.hh"
+
+#include "DetectorConstruction.hh"
+
+using namespace G4_BREMS;
 
 int main(int argc, char** argv)
 {
@@ -26,6 +31,9 @@ int main(int argc, char** argv)
 	auto* runManager =
 		G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
 	
+	// set 3 required initialization classes
+	runManager->SetUserInitialization(new DetectorConstruction());
+	runManager->SetUserInitialization(new QBBC());
 
 
 	// ======================================================================
