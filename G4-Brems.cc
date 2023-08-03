@@ -60,6 +60,9 @@ int main(int argc, char** argv)
 		UImanager->ApplyCommand(command + fileName);
 	}
 	else {
+		// run visualization
+		UImanager->ApplyCommand("/control/execute vis.mac")
+
 		// use UI
 		ui->SessionStart();
 		delete ui;
