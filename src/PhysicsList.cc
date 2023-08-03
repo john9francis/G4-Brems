@@ -9,7 +9,6 @@
 namespace G4_BREMS
 {
 	PhysicsList::PhysicsList() : G4VModularPhysicsList() {
-		//G4Electron::ElectronDefinition();
 		// Get the standard EM particles
 		RegisterPhysics(new G4EmStandardPhysics());
 	}
