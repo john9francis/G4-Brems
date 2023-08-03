@@ -9,6 +9,8 @@
 #include "QBBC.hh"
 
 #include "DetectorConstruction.hh"
+#include "PrimaryGeneratorAction.hh"
+#include "PhysicsList.hh"
 
 using namespace G4_BREMS;
 
@@ -33,7 +35,7 @@ int main(int argc, char** argv)
 	
 	// set 3 required initialization classes
 	runManager->SetUserInitialization(new DetectorConstruction());
-	runManager->SetUserInitialization(new QBBC());
+	runManager->SetUserInitialization(new PhysicsList());
 
 
 	// ======================================================================
