@@ -20,16 +20,25 @@ namespace G4_BREMS
 
 		// Start with constructing the world:
         G4double worldSize = 10 * cm;
+        G4Material* air = nist->FindOrBuildMaterial("G4_AIR");
 
         auto solidWorld = new G4Box("World",
             worldSize,
             worldSize,
             worldSize);
 
-        auto logicWorld = new G4LogicalVolume(solidWorld, nullptr, "World");
+        // NOTE: the world is made of air... can I make it a vacuum somehow?
+        auto logicWorld = new G4LogicalVolume(solidWorld,
+            air, 
+            "World");
 
         auto physWorld = new G4PVPlacement(nullptr,
-            G4ThreeVector(), logicWorld, "World", nullptr, false, 0);
+            G4ThreeVector(), 
+            logicWorld, 
+            "World", 
+            nullptr, 
+            false, 
+            0);
 
 
         // create our tungsten target
@@ -39,7 +48,7 @@ namespace G4_BREMS
         G4double outerTargetRadius = 5.0 * cm;
         G4double targetThickness = 0.5 * cm;
 
-        G4Tubs* solidTarget = new G4Tubs("SolidTarget",
+        G4Tubs* solidTarget = new G4Tubs("Target",
             innerTargetRadius,
             outerTargetRadius,
             targetThickness / 2.0,
@@ -48,7 +57,7 @@ namespace G4_BREMS
 
         G4LogicalVolume* logicTarget = new G4LogicalVolume(solidTarget, 
             tungsten, 
-            "LogicTarget");
+            "Target");
 
         // target position and rotation
         G4ThreeVector targetPos = G4ThreeVector();
@@ -58,7 +67,7 @@ namespace G4_BREMS
         new G4PVPlacement(targetRotation, 
             targetPos, 
             logicTarget, 
-            "LogicTarget",
+            "Target",
             logicWorld, 
             false, 
             0);
