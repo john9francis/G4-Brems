@@ -4,6 +4,8 @@
 /vis/open OGL
 # draw geometry
 /vis/drawVolume
+# Specify view angle:
+/vis/viewer/set/viewpointVector -1 0 0
 # Draw smooth trajectories at end of event, showing trajectory points
 # as markers 2 pixels wide:
 /vis/scene/add/trajectories smooth
@@ -12,3 +14,5 @@
 /vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
 # Make the "World" box invisible
 /vis/geometry/set/visibility World 0 false
+# To superimpose all of the events from a given run:
+/vis/scene/endOfEventAction accumulate

@@ -14,7 +14,7 @@ namespace G4_BREMS
 		// define particle properties
 		const G4String& particleName = "e-";
 		G4double energy = 6. * MeV;
-		G4ThreeVector position = G4ThreeVector(0, 0, -1 * cm);
+		G4ThreeVector position = G4ThreeVector(0, 0, -5 * cm);
 		G4ThreeVector momentumDirection = G4ThreeVector(0, 0, 1);
 
 		// default particle kinematic
