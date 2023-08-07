@@ -19,12 +19,12 @@ namespace G4_BREMS
 
 
 		// Start with constructing the world:
-        G4double worldSize = 10 * cm;
+        G4double worldSize = 1 * m;
         G4Material* air = nist->FindOrBuildMaterial("G4_AIR");
 
         auto solidWorld = new G4Box("World",
-            worldSize,
-            worldSize,
+            worldSize / 2,
+            worldSize / 2,
             worldSize);
 
         // NOTE: the world is made of air... can I make it a vacuum somehow?
@@ -45,8 +45,8 @@ namespace G4_BREMS
         G4Material* tungsten = nist->FindOrBuildMaterial("G4_W");
 
         G4double innerTargetRadius = 0.0;
-        G4double outerTargetRadius = 5.0 * cm;
-        G4double targetThickness = 0.5 * cm;
+        G4double outerTargetRadius = 3.0 * cm;
+        G4double targetThickness = 0.1 * cm;
 
         G4Tubs* solidTarget = new G4Tubs("Target",
             innerTargetRadius,
@@ -70,6 +70,65 @@ namespace G4_BREMS
             "Target",
             logicWorld, 
             false, 
+            0);
+
+
+        // create tungsten collimator
+        G4double innerColRadius = 5.0 * cm;
+        G4double outerColRadius = 15.0 * cm;
+        G4double colThickness = 5.0 * cm;
+
+        G4Tubs* solidCol = new G4Tubs("Collimator",
+            innerColRadius,
+            outerColRadius,
+            colThickness / 2.0,
+            0.0,
+            360.0 * deg);
+
+        G4LogicalVolume* logicCol = new G4LogicalVolume(solidCol,
+            tungsten,
+            "Collimator");
+
+        // collimator position and rotation
+        G4ThreeVector colPos = G4ThreeVector(0, 0, 10. * cm);
+        G4RotationMatrix* colRotation = new G4RotationMatrix();
+
+        // place the collimator in the world
+        new G4PVPlacement(colRotation,
+            colPos,
+            logicCol,
+            "Collimator",
+            logicWorld,
+            false,
+            0);
+        
+
+        // Detector
+        G4double detectorXY = 20 * cm;
+        G4double detectorZ = 1 * cm;
+
+        G4Box* solidDetector = new G4Box(
+            "Detector",
+            detectorXY,
+            detectorXY,
+            detectorZ);
+
+        G4LogicalVolume* logicDetector = new G4LogicalVolume(
+            solidDetector,
+            tungsten,
+            "Detector");
+
+        G4ThreeVector detectorPos = G4ThreeVector(0, 0, 20 * cm);
+        G4RotationMatrix* detRotation = new G4RotationMatrix();
+
+
+        // place the detector
+        new G4PVPlacement(detRotation,
+            detectorPos,
+            logicDetector,
+            "Detector",
+            logicWorld,
+            false,
             0);
 	
         return physWorld;
