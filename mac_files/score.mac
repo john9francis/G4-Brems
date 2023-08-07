@@ -1,0 +1,13 @@
+# mac file to configure scoring in the "detector"
+#
+# Turn that detector into a scoring volume
+/score/create/realWorldLogVol Detector
+#
+/run/beamOn 100
+#
+/score/quantity/nOfCollision collisions
+/score/quantity/energyDeposit eDep eV
+/score/quantity/doseDeposit dDep Gy
+/score/dumpAllQuantitiesToFile Detector gamma_detections.txt
+/score/close
+#
