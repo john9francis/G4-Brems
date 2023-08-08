@@ -6,7 +6,8 @@
 #include "G4RunManagerFactory.hh"
 #include "G4VisExecutive.hh"
 #include "G4ScoringManager.hh"
-#include "QBBC.hh"
+#include "G4AnalysisManager.hh"
+#include "G4TScoreHistFiller.hh"
 
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"

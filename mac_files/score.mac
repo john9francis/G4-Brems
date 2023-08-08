@@ -1,13 +1,24 @@
 # mac file to configure scoring in the "detector"
+
 #
-# Turn that detector into a scoring volume
-/score/create/realWorldLogVol Detector
+# define scoring probe
 #
-/run/beamOn 100
+/score/create/probe Probes 5. cm
+/score/probe/locate 0. 0. 0. cm
 #
-/score/quantity/nOfCollision collisions
-/score/quantity/energyDeposit eDep eV
-/score/quantity/doseDeposit dDep Gy
-/score/dumpAllQuantitiesToFile Detector gamma_detections.txt
+# define flux scorers and filter
+#
+/score/quantity/volumeFlux volFlux
+/score/quantity/volumeFlux gammaFlux
+/score/filter/particle gammaFilter gamma
 /score/close
 #
+# define histograms
+#
+/analysis/h1/create volFlux Probes_volFlux 100 0.01 2000. MeV ! log
+/analysis/h1/create gammaFlux Probes_gammaFlux 100 0.01 2000. MeV ! log
+#
+# filling histograms
+#
+/score/fill1D 1 Probes volFlux
+/score/fill1D 2 Probes gammaFlux
