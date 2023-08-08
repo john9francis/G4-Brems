@@ -1,5 +1,5 @@
-#ifndef G4_BREMS_ACTION_INIT
-#define G4_BREMS_ACTION_INIT 1
+#ifndef G4_BREMS_ACTION_INIT_H
+#define G4_BREMS_ACTION_INIT_H 1
 
 #include "G4VUserActionInitialization.hh"
 
@@ -16,4 +16,4 @@ namespace G4_BREMS {
 	};
 }
 
-#endif // !G4_BREMS_ACTION_INIT
+#endif // !G4_BREMS_ACTION_INIT_H

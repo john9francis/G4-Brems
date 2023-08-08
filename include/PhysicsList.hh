@@ -1,5 +1,5 @@
-#ifndef G4_BREMS_PHYSICS_LIST_HH
-#define G4_BREMS_PHYSICS_LIST_HH 1
+#ifndef G4_BREMS_PHYSICS_LIST_H
+#define G4_BREMS_PHYSICS_LIST_H 1
 
 #include "G4VModularPhysicsList.hh"
 

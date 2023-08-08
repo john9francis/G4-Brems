@@ -1,5 +1,5 @@
-#ifndef G4_BREMS_HIT
-#define G4_BREMS_HIT 1
+#ifndef G4_BREMS_HIT_H
+#define G4_BREMS_HIT_H 1
 
 // My own Hit class
 
@@ -16,4 +16,4 @@ namespace G4_BREMS {
 	};
 }
 
-#endif // !G4_BREMS_HIT
+#endif // !G4_BREMS_HIT_H
