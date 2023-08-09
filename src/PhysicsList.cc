@@ -23,13 +23,13 @@ namespace G4_BREMS
 		// Construct processes here
 		G4VModularPhysicsList::ConstructProcess();
 
-		G4ProcessManager* electronProcessManager = G4Electron::Electron()->GetProcessManager();
-
-		// Creating Bremsstrahlung process
-		G4eBremsstrahlung* bremsProcess = new G4eBremsstrahlung();
-
-		// add it to the electrons processes
-		electronProcessManager->AddProcess(bremsProcess);
-
+		//G4ProcessManager* electronProcessManager = G4Electron::Electron()->GetProcessManager();
+		//
+		//// Creating Bremsstrahlung process
+		//G4eBremsstrahlung* bremsProcess = new G4eBremsstrahlung();
+		//
+		//// add it to the electrons processes
+		//electronProcessManager->AddProcess(bremsProcess);
+		//
 	}
 }

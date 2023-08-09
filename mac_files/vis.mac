@@ -18,8 +18,8 @@
 /vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
 #
 # draw only gammas:
-/vis/filtering/trajectories/create/particleFilter
-/vis/filtering/trajectories/particleFilter-0/add gamma
+#/vis/filtering/trajectories/create/particleFilter
+#/vis/filtering/trajectories/particleFilter-0/add gamma
 #
 # Make the "World" box invisible
 /vis/geometry/set/visibility World 0 false
