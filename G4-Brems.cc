@@ -16,6 +16,10 @@
 
 using namespace G4_BREMS;
 
+// for printing
+#include <iostream>
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	// Initialize (or don't) a UI
@@ -23,6 +27,9 @@ int main(int argc, char** argv)
 	if (argc == 1) {
 		ui = new G4UIExecutive(argc, argv);
 	}
+
+	//test
+	cout << "Hello World!";
 
 	// ======================================================================
 	// RunManager, + 3 Required additions:
@@ -75,6 +82,7 @@ int main(int argc, char** argv)
 	// clean up
 	delete visManager;
 	delete runManager;
+
 
 	return 0;
 }
