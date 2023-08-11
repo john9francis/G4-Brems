@@ -130,6 +130,9 @@ namespace G4_BREMS
             logicWorld,
             false,
             0);
+
+        // Define this detector as the gamma detector
+        fGammaDetector = logicDetector;
 	
         return physWorld;
     }
