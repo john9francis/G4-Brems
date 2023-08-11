@@ -13,6 +13,12 @@ namespace G4_BREMS {
 			G4RunManager::GetRunManager()->GetUserDetectorConstruction()
 			);
 		fGammaDetector = detConstruction->GetGammaDetector();
+
+		// Create a hits collection
+	}
+
+	SteppingAction::~SteppingAction() {
+		// delete my hits collection
 	}
 
 	void SteppingAction::UserSteppingAction(const G4Step* step) {
@@ -25,8 +31,20 @@ namespace G4_BREMS {
 
 		// if the volume is our gamma detector, create a hit.
 		// else, move on. 
+
 		if (volume == fGammaDetector) {
-			// Create a hit and register it to the hit collection
+
+			// Create a hit 
+			Hit* hit = new Hit();
+			hit->SetParticlePosition(step->GetPreStepPoint()->GetPosition());
+			hit->SetParticleEnergy(step->GetPreStepPoint()->GetTotalEnergy());
+
+			// Register that hit to the hits collection
+
+
+			// Delete that hit
+			delete hit;
+		
 		}
 	}
 	
