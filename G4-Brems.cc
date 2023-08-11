@@ -55,9 +55,6 @@ int main(int argc, char** argv)
 	G4VisManager* visManager = new G4VisExecutive;
 	visManager->Initialize();
 
-	G4ScoringManager::GetScoringManager();
-
-
 	// START UI =============================================================
 
 	// get pointer to UI manager
