@@ -1,6 +1,7 @@
 
 #include "SteppingAction.hh"
 #include "DetectorConstruction.hh"
+#include "Hit.hh"
 
 #include "G4Step.hh"
 #include "G4RunManager.hh"
@@ -24,8 +25,9 @@ namespace G4_BREMS {
 
 		// if the volume is our gamma detector, create a hit.
 		// else, move on. 
-		
-
+		if (volume == fGammaDetector) {
+			// Create a hit and register it to the hit collection
+		}
 	}
 	
 }
