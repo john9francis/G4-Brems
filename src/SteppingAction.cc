@@ -51,7 +51,7 @@ namespace G4_BREMS {
 			Hit* hit = new Hit();
 			hit->SetParticlePosition(step->GetPreStepPoint()->GetPosition());
 			hit->SetParticleEnergy(step->GetPreStepPoint()->GetTotalEnergy());
-			hit->Print();
+			//hit->Print();
 
 			// Register that hit to the hits collection
 			fGammaHitsCollection->insert(hit);
