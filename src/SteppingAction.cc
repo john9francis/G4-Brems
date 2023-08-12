@@ -41,6 +41,8 @@ namespace G4_BREMS {
 		// if the volume is our gamma detector, create a hit.
 		// else, move on. 
 
+		if (volume != fGammaDetector) { return;  }
+
 		if (volume == fGammaDetector) {
 
 			G4cout << "Inside detector..." << G4endl;
@@ -53,6 +55,8 @@ namespace G4_BREMS {
 
 			// Register that hit to the hits collection
 			fGammaHitsCollection->insert(hit);
+
+			// delete that particle? (if it's registering multiple times)
 		
 		}
 	}
