@@ -4,7 +4,9 @@
 using namespace std;
 
 namespace G4_BREMS {
-Hit::Hit() {}
+Hit::Hit() {
+
+}
 Hit::~Hit() {}
 
 void Hit::Print() {

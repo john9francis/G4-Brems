@@ -24,7 +24,7 @@ namespace G4_BREMS {
 		}
 
 	private:
-		G4ThreeVector& fParticlePosition;
+		G4ThreeVector fParticlePosition;
 		G4double fParticleEnergy;
 	};
 }
