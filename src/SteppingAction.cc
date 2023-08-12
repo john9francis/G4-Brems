@@ -2,6 +2,7 @@
 #include "SteppingAction.hh"
 #include "DetectorConstruction.hh"
 #include "Hit.hh"
+#include "HitsCollection.hh"
 
 #include "G4Step.hh"
 #include "G4RunManager.hh"
@@ -14,11 +15,13 @@ namespace G4_BREMS {
 			);
 		fGammaDetector = detConstruction->GetGammaDetector();
 
-		// Create a hits collection
+		// Create hits collections
+
+
 	}
 
 	SteppingAction::~SteppingAction() {
-		// delete my hits collection
+		// delete my hits collections
 	}
 
 	void SteppingAction::UserSteppingAction(const G4Step* step) {

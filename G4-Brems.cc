@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 	}
 
 	//test
-	cout << "Hello World!";
+	G4cout << "Hello World!";
 
 	// ======================================================================
 	// RunManager, + 3 Required additions:
@@ -59,6 +59,7 @@ int main(int argc, char** argv)
 
 	// get pointer to UI manager
 	G4UImanager* UImanager = G4UImanager::GetUIpointer();
+	// set cout destination
 
 	// Run macro or start UI
 	if (!ui) {
