@@ -3,6 +3,7 @@
 
 #include "G4UserSteppingAction.hh"
 #include "G4LogicalVolume.hh"
+#include "HitsCollection.hh"
 
 namespace G4_BREMS {
 
@@ -15,6 +16,7 @@ namespace G4_BREMS {
 
 	private:
 		G4LogicalVolume* fGammaDetector = nullptr;
+		HitsCollection* fGammaHitsCollection = nullptr;
 	};
 
 }

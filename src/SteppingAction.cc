@@ -9,19 +9,25 @@
 
 namespace G4_BREMS {
 	SteppingAction::SteppingAction() {
-		// Get our scoring volume 
+		// Get our detector volume 
 		const auto detConstruction = static_cast<const DetectorConstruction*>(
 			G4RunManager::GetRunManager()->GetUserDetectorConstruction()
 			);
 		fGammaDetector = detConstruction->GetGammaDetector();
 
 		// Create hits collections
+		fGammaHitsCollection = new HitsCollection();
 
 
 	}
 
 	SteppingAction::~SteppingAction() {
+		// print all the hits? (I hope)
+		fGammaHitsCollection->PrintAllHits();
+
 		// delete my hits collections
+		delete fGammaHitsCollection;
+
 	}
 
 	void SteppingAction::UserSteppingAction(const G4Step* step) {
@@ -37,16 +43,16 @@ namespace G4_BREMS {
 
 		if (volume == fGammaDetector) {
 
+			G4cout << "Inside detector..." << G4endl;
+
 			// Create a hit 
 			Hit* hit = new Hit();
 			hit->SetParticlePosition(step->GetPreStepPoint()->GetPosition());
 			hit->SetParticleEnergy(step->GetPreStepPoint()->GetTotalEnergy());
+			hit->Print();
 
 			// Register that hit to the hits collection
-
-
-			// Delete that hit
-			delete hit;
+			fGammaHitsCollection->insert(hit);
 		
 		}
 	}

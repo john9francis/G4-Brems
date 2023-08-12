@@ -1,6 +1,7 @@
 
 #include "ActionInit.hh"
 #include "PrimaryGeneratorAction.hh"
+#include "SteppingAction.hh"
 
 namespace G4_BREMS {
 
@@ -8,6 +9,7 @@ namespace G4_BREMS {
 
 		// set the primary generator action
 		SetUserAction(new PrimaryGeneratorAction);
+		SetUserAction(new SteppingAction);
 	};
 
 }
