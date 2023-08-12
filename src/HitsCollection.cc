@@ -11,6 +11,6 @@ namespace G4_BREMS {
 	}
 
 	void HitsCollection::PrintAllHits() {
-
+		
 	}
 }
