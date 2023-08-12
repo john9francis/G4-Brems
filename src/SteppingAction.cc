@@ -45,18 +45,24 @@ namespace G4_BREMS {
 
 		if (volume == fGammaDetector) {
 
-			G4cout << "Inside detector..." << G4endl;
+			//G4cout << "Inside detector..." << G4endl;
 
-			// Create a hit 
-			Hit* hit = new Hit();
-			hit->SetParticlePosition(step->GetPreStepPoint()->GetPosition());
-			hit->SetParticleEnergy(step->GetPreStepPoint()->GetTotalEnergy());
-			//hit->Print();
+			// Create a hit ONLY if it's the first step into the detector.
+			if (step->IsFirstStepInVolume()) {
+					
+				// only works if we have this cout...
+				G4cout << "Beginning hit..." << G4endl;
 
-			// Register that hit to the hits collection
-			fGammaHitsCollection->insert(hit);
+				// create a new hit
+				Hit* hit = new Hit();
+				hit->SetParticlePosition(step->GetPreStepPoint()->GetPosition());
+				hit->SetParticleEnergy(step->GetPreStepPoint()->GetTotalEnergy());
+				hit->Print();
 
-			// delete that particle? (if it's registering multiple times)
+				// Register that hit to the hits collection
+				fGammaHitsCollection->insert(hit);
+			}
+
 		
 		}
 	}

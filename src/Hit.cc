@@ -1,5 +1,6 @@
 
 #include "Hit.hh"
+#include "G4ios.hh"
 
 using namespace std;
 
