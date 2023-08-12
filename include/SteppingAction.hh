@@ -9,7 +9,7 @@ namespace G4_BREMS {
 	class SteppingAction : public G4UserSteppingAction {
 	public:
 		SteppingAction();
-		~SteppingAction() override = default;
+		~SteppingAction();
 
 		void UserSteppingAction(const G4Step*) override;
 
