@@ -15,5 +15,5 @@ A Geant4 Model of Bremsstrahlung or "braking radiation." In this model I will mi
 - 1: [Bremsstrahlung article](https://folk.ntnu.no/floban/KJ%20%203055/X%20%20Ray/Bremsstrahlung.htm)
 - 2: [How a Linear Accelerator Works Video (03:00)](https://www.youtube.com/watch?v=jSgnWfbEx1A)
 
-
-testing bush to branch /release-v1.0.0
+# Git with this remote branch
+This is the release-v1.0.0 branch. In order to make changes to this branch, first 
