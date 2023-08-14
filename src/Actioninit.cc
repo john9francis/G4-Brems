@@ -10,8 +10,13 @@ namespace G4_BREMS {
 
 		// set the Geant4 actions
 		SetUserAction(new PrimaryGeneratorAction);
+
+		// create a pointer to the runAction
+		RunAction* runAction = new RunAction;
+		SetUserAction(runAction);
+
 		SetUserAction(new SteppingAction);
-		SetUserAction(new RunAction);
+
 	};
 
 }

@@ -9,14 +9,20 @@
 #include "G4RunManager.hh"
 
 namespace G4_BREMS {
-	SteppingAction::SteppingAction() {
+	SteppingAction::SteppingAction(RunAction* runAction) {
 		// Get our detector volume 
 		const auto detConstruction = static_cast<const DetectorConstruction*>(
 			G4RunManager::GetRunManager()->GetUserDetectorConstruction()
 			);
 		fGammaDetector = detConstruction->GetGammaDetector();
 
+		if (runAction) {
+			// set the run action
+			frunAction = runAction;
+		}
 
+		// initialize the first step
+		firstStep = true;
 	}
 
 	SteppingAction::~SteppingAction() {
@@ -41,7 +47,9 @@ namespace G4_BREMS {
 			//G4cout << "Inside detector..." << G4endl;
 
 			// Create a hit ONLY if it's the first step into the detector.
-			if (step->IsFirstStepInVolume()) {
+			if (firstStep) {
+
+				firstStep = false;
 					
 				// only works if we have this cout...
 				G4cout << "Beginning hit..." << G4endl;
@@ -50,9 +58,17 @@ namespace G4_BREMS {
 				Hit* hit = new Hit();
 				hit->SetParticlePosition(step->GetPreStepPoint()->GetPosition());
 				hit->SetParticleEnergy(step->GetPreStepPoint()->GetTotalEnergy());
-				hit->Print();
+				// NOTE: this isn't even working
+				hit->Print(); 
 
 				// Register that hit to the hits collection
+				
+				// NOTE: this doesn't seem to be working...
+				if (frunAction) {
+					frunAction->AddHit(hit);
+					frunAction->PrintHits();
+				}
+
 			}
 
 		

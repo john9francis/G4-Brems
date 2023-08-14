@@ -5,11 +5,14 @@
 #include "G4LogicalVolume.hh"
 #include "HitsCollection.hh"
 
+
 namespace G4_BREMS {
+
+	class RunAction;
 
 	class SteppingAction : public G4UserSteppingAction {
 	public:
-		SteppingAction();
+		SteppingAction(RunAction* runAction=nullptr);
 		~SteppingAction();
 
 		void UserSteppingAction(const G4Step*) override;
@@ -17,6 +20,10 @@ namespace G4_BREMS {
 	private:
 		G4LogicalVolume* fGammaDetector = nullptr;
 		HitsCollection* fGammaHitsCollection = nullptr;
+
+		RunAction* frunAction = nullptr;
+
+		bool firstStep;
 	};
 
 }

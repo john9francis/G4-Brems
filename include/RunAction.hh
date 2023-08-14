@@ -18,6 +18,8 @@ namespace G4_BREMS {
 
 		void AddHit(Hit* aHit);
 
+		void PrintHits();
+
 	private:
 		HitsCollection* fGammaHitsCollection;
 	};

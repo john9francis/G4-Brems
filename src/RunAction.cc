@@ -13,9 +13,11 @@ namespace G4_BREMS {
 
 	}
 
-	void RunAction::EndOfRunAction(const G4Run*) {
-		// print all the hits
+	void RunAction::PrintHits() {
 		fGammaHitsCollection->PrintAllHits();
+	}
+
+	void RunAction::EndOfRunAction(const G4Run*) {
 
 		// delete our hits collection
 		delete fGammaHitsCollection;
