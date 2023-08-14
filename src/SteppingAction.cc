@@ -3,6 +3,7 @@
 #include "DetectorConstruction.hh"
 #include "Hit.hh"
 #include "HitsCollection.hh"
+#include "RunAction.hh"
 
 #include "G4Step.hh"
 #include "G4RunManager.hh"
@@ -15,18 +16,10 @@ namespace G4_BREMS {
 			);
 		fGammaDetector = detConstruction->GetGammaDetector();
 
-		// Create hits collections
-		fGammaHitsCollection = new HitsCollection();
-
 
 	}
 
 	SteppingAction::~SteppingAction() {
-		// print all the hits? (I hope)
-		fGammaHitsCollection->PrintAllHits();
-
-		// delete my hits collections
-		delete fGammaHitsCollection;
 
 	}
 
@@ -60,7 +53,6 @@ namespace G4_BREMS {
 				hit->Print();
 
 				// Register that hit to the hits collection
-				fGammaHitsCollection->insert(hit);
 			}
 
 		
