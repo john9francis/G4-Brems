@@ -4,6 +4,7 @@
 #include "G4UserRunAction.hh"
 
 #include "HitsCollection.hh"
+#include"Hit.hh"
 
 namespace G4_BREMS {
 	class RunAction : public G4UserRunAction {
@@ -14,6 +15,8 @@ namespace G4_BREMS {
 		void BeginOfRunAction(const G4Run*);
 
 		void EndOfRunAction(const G4Run*);
+
+		void AddHit(Hit* aHit);
 
 	private:
 		HitsCollection* fGammaHitsCollection;
