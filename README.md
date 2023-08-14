@@ -20,6 +20,8 @@ This is the release-v1.0.0 branch. In order to make changes to this branch, foll
 ```git
 git clone https://github.com/john9francis/G4-Brems.git
 ```
+Commit like normal.
+
 To pull to the specific branch, 
 ```git
 git pull origin release-v1.0.0
