@@ -20,7 +20,20 @@ This is the release-v1.0.0 branch. In order to make changes to this branch, foll
 ```git
 git clone https://github.com/john9francis/G4-Brems.git
 ```
-Commit like normal.
+First, checkout the correct branch
+```git
+git checkout remotes/origin/release-v1.0.0
+```
+You can also see a list of the branches by running,
+```git
+git branch -a
+```
+And then check that you are on the correct branch with,
+```git
+git branch
+```
+
+Once you are on the branch, add and commit like normal. But to push and pull, you have to specifically target the branch.
 
 To pull to the specific branch, 
 ```git
