@@ -5,7 +5,12 @@
 
 namespace G4_BREMS {
 	class RunAction : public G4UserRunAction {
-		// my own implimentation of runaction
+		RunAction() = default;
+		~RunAction() override = default;
+
+		void BeginOfRunAction(const G4Run*);
+
+		void EndOfRunAction(const G4Run*);
 	};
 }
 
