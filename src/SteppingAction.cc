@@ -16,9 +16,13 @@ namespace G4_BREMS {
 			);
 		fGammaDetector = detConstruction->GetGammaDetector();
 
+		G4cout << "created stepping action" << G4endl;
+
 		if (runAction) {
 			// set the run action
 			frunAction = runAction;
+
+			G4cout << "put a runaction into stepping action" << G4endl;
 		}
 
 		// initialize the first step
@@ -37,42 +41,34 @@ namespace G4_BREMS {
 			= step->GetPreStepPoint()->GetTouchableHandle()
 			->GetVolume()->GetLogicalVolume();
 
-		// if the volume is our gamma detector, create a hit.
-		// else, move on. 
-
+		// end here if the particle isn't in the detector
 		if (volume != fGammaDetector) { return;  }
 
-		if (volume == fGammaDetector) {
+		// Create a hit ONLY if it's the first step into the detector.
+		if (step->IsFirstStepInVolume()) {
 
-			//G4cout << "Inside detector..." << G4endl;
+			// only works if we have this cout...
+			G4cout << "Beginning hit..." << G4endl;
 
-			// Create a hit ONLY if it's the first step into the detector.
-			if (firstStep) {
+			// create a new hit
+			Hit* hit = new Hit();
+			hit->SetParticlePosition(step->GetPreStepPoint()->GetPosition());
+			hit->SetParticleEnergy(step->GetPreStepPoint()->GetTotalEnergy());
+			// NOTE: this isn't even working
+			hit->Print(); 
 
-				firstStep = false;
-					
-				// only works if we have this cout...
-				G4cout << "Beginning hit..." << G4endl;
-
-				// create a new hit
-				Hit* hit = new Hit();
-				hit->SetParticlePosition(step->GetPreStepPoint()->GetPosition());
-				hit->SetParticleEnergy(step->GetPreStepPoint()->GetTotalEnergy());
-				// NOTE: this isn't even working
-				hit->Print(); 
-
-				// Register that hit to the hits collection
+			// Register that hit to the hits collection
 				
-				// NOTE: this doesn't seem to be working...
-				if (frunAction) {
-					frunAction->AddHit(hit);
-					frunAction->PrintHits();
-				}
+			// NOTE: this doesn't seem to be working...
+			//if (frunAction) {
+			//	frunAction->AddHit(hit);
+			//	frunAction->PrintHits();
+			//}
 
-			}
+		}
 
 		
-		}
+		
 	}
 	
 }
