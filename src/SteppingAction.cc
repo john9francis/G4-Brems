@@ -9,7 +9,7 @@
 #include "G4RunManager.hh"
 
 namespace G4_BREMS {
-	SteppingAction::SteppingAction(RunAction* runAction) {
+	SteppingAction::SteppingAction(EventAction* eventAction) {
 		// Get our detector volume 
 		const auto detConstruction = static_cast<const DetectorConstruction*>(
 			G4RunManager::GetRunManager()->GetUserDetectorConstruction()
@@ -18,15 +18,13 @@ namespace G4_BREMS {
 
 		G4cout << "created stepping action" << G4endl;
 
-		if (runAction) {
+		if (eventAction) {
 			// set the run action
-			frunAction = runAction;
+			feventAction = eventAction;
 
-			G4cout << "put a runaction into stepping action" << G4endl;
+			G4cout << "put a eventaction into stepping action" << G4endl;
 		}
 
-		// initialize the first step
-		firstStep = true;
 	}
 
 	SteppingAction::~SteppingAction() {
@@ -44,30 +42,13 @@ namespace G4_BREMS {
 		// end here if the particle isn't in the detector
 		if (volume != fGammaDetector) { return;  }
 
-		// Create a hit ONLY if it's the first step into the detector.
+		// If it's the first step in the volume, save the position. 
 		if (step->IsFirstStepInVolume()) {
-
-			// only works if we have this cout...
-			G4cout << "Beginning hit..." << G4endl;
-
-			// create a new hit
-			Hit* hit = new Hit();
-			hit->SetParticlePosition(step->GetPreStepPoint()->GetPosition());
-			hit->SetParticleEnergy(step->GetPreStepPoint()->GetTotalEnergy());
-			// NOTE: this isn't even working
-			hit->Print(); 
-
-			// Register that hit to the hits collection
-				
-			// NOTE: this doesn't seem to be working...
-			//if (frunAction) {
-			//	frunAction->AddHit(hit);
-			//	frunAction->PrintHits();
-			//}
 
 		}
 
-		
+		// Register all the energy to the eventAction while it's in the detector.
+		feventAction->AddEnergy(step->GetTotalEnergyDeposit());
 		
 	}
 	

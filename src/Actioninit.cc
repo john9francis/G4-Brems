@@ -3,6 +3,7 @@
 #include "PrimaryGeneratorAction.hh"
 #include "SteppingAction.hh"
 #include "RunAction.hh"
+#include "EventAction.hh"
 
 namespace G4_BREMS {
 
@@ -15,7 +16,10 @@ namespace G4_BREMS {
 		RunAction* runAction = new RunAction;
 		SetUserAction(runAction);
 
-		SetUserAction(new SteppingAction(runAction));
+		EventAction* eventAction = new EventAction;
+		SetUserAction(eventAction);
+
+		SetUserAction(new SteppingAction(eventAction));
 
 	};
 

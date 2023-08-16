@@ -4,15 +4,15 @@
 #include "G4UserSteppingAction.hh"
 #include "G4LogicalVolume.hh"
 #include "HitsCollection.hh"
+#include "EventAction.hh"
 
 
 namespace G4_BREMS {
 
-	class RunAction;
 
 	class SteppingAction : public G4UserSteppingAction {
 	public:
-		SteppingAction(RunAction* runAction=nullptr);
+		SteppingAction(EventAction* eventAction = nullptr);
 		~SteppingAction();
 
 		void UserSteppingAction(const G4Step*) override;
@@ -21,9 +21,8 @@ namespace G4_BREMS {
 		G4LogicalVolume* fGammaDetector = nullptr;
 		HitsCollection* fGammaHitsCollection = nullptr;
 
-		RunAction* frunAction = nullptr;
+		EventAction* feventAction = nullptr;
 
-		bool firstStep;
 	};
 
 }
