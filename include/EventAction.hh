@@ -15,7 +15,7 @@ that energy will be summed up and kept track of here in the form of a "Hit."
 namespace G4_BREMS {
 	class EventAction : public G4UserEventAction {
 	public:
-		EventAction() = default;
+		EventAction();
 		~EventAction() override = default;
 
 		void BeginOfEventAction(const G4Event* anEvent) override;
