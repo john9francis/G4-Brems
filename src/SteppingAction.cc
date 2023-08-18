@@ -13,13 +13,11 @@ namespace G4_BREMS {
 			);
 		fGammaDetector = detConstruction->GetGammaDetector();
 
-		G4cout << "created stepping action" << G4endl;
 
 		if (eventAction) {
-			// set the run action
+			// set the event action
 			feventAction = eventAction;
 
-			G4cout << "put a eventaction into stepping action" << G4endl;
 		}
 
 	}
