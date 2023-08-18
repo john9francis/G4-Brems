@@ -11,7 +11,9 @@ namespace G4_BREMS {
 
 	void EventAction::EndOfEventAction(const G4Event* anEvent) {
 		// end of event actions here
-		G4cout << "Energy deposited for this event: " << fEnergy << G4endl;
+		if (fEnergy > 0) {
+			G4cout << "Energy deposited for this event: " << fEnergy << G4endl;
+		}
 
 	}
 
