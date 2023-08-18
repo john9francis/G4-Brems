@@ -3,7 +3,6 @@
 
 #include "G4UserSteppingAction.hh"
 #include "G4LogicalVolume.hh"
-#include "HitsCollection.hh"
 #include "EventAction.hh"
 
 
@@ -19,7 +18,6 @@ namespace G4_BREMS {
 
 	private:
 		G4LogicalVolume* fGammaDetector = nullptr;
-		HitsCollection* fGammaHitsCollection = nullptr;
 
 		EventAction* feventAction = nullptr;
 
