@@ -5,9 +5,6 @@
 #include "G4UIExecutive.hh"
 #include "G4RunManagerFactory.hh"
 #include "G4VisExecutive.hh"
-#include "G4ScoringManager.hh"
-#include "G4AnalysisManager.hh"
-#include "G4TScoreHistFiller.hh"
 
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"
@@ -59,7 +56,6 @@ int main(int argc, char** argv)
 
 	// get pointer to UI manager
 	G4UImanager* UImanager = G4UImanager::GetUIpointer();
-	// set cout destination
 
 	// Run macro or start UI
 	if (!ui) {
