@@ -1,9 +1,6 @@
 
 #include "EventAction.hh"
 
-#include "G4UnitsTable.hh"
-#include "G4SystemOfUnits.hh"
-
 
 namespace G4_BREMS {
 	EventAction::EventAction() {
@@ -19,28 +16,26 @@ namespace G4_BREMS {
 
 	void EventAction::EndOfEventAction(const G4Event* anEvent) {
 		// end of event actions here
+		Print();
+	}
+
+	void EventAction::Print() {
 		if (fEnergy > 0) {
 			G4cout
 				<< "Particle hit the detector"
 				<< G4endl;
-			G4cout 
-				<< "Energy of this particle for this event: " 
+			G4cout
+				<< "Energy: "
 				<< G4BestUnit(fEnergy, "Energy")
 				<< G4endl;
 			G4cout
-				<< "Position of this particle: "
-				<< "X: "
+				<< "Position: "
 				<< G4BestUnit(fPosition.getX(), "Length")
+				<< G4BestUnit(fPosition.getY(), "Length")
+				<< G4BestUnit(fPosition.getZ(), "Length")
 				<< G4endl;
 		}
-
 	}
 
-	void EventAction::AddEnergy(G4double energy) {
-		fEnergy += energy;
-	}
 
-	void EventAction::SetPosition(G4ThreeVector pos) {
-		fPosition = pos;
 	}
-}
