@@ -45,8 +45,8 @@ namespace G4_BREMS
         G4Material* tungsten = nist->FindOrBuildMaterial("G4_W");
 
         G4double innerTargetRadius = 0.0;
-        G4double outerTargetRadius = 3.0 * cm;
-        G4double targetThickness = 0.1 * cm;
+        G4double outerTargetRadius = 1.5 * cm;
+        G4double targetThickness = 1 * mm;
 
         G4Tubs* solidTarget = new G4Tubs("Target",
             innerTargetRadius,
@@ -60,7 +60,7 @@ namespace G4_BREMS
             "Target");
 
         // target position and rotation
-        G4ThreeVector targetPos = G4ThreeVector();
+        G4ThreeVector targetPos = G4ThreeVector(); // 0,0
         G4RotationMatrix* targetRotation = new G4RotationMatrix();
 
         // place the target in the world
@@ -73,10 +73,44 @@ namespace G4_BREMS
             0);
 
 
+        // create a graphite absorber to absorb electrons
+        G4Material* graphite = nist->FindOrBuildMaterial("G4_GRAPHITE");
+
+        G4double innerAbsorberRadius = 0.0;
+        G4double outerAbsorberRadius = 1.5 * cm;
+        G4double absorberThickness = 1.5 * cm;
+
+        G4Tubs* solidAbsorber = new G4Tubs("Absorber",
+            innerAbsorberRadius,
+            outerAbsorberRadius,
+            absorberThickness / 2.0,
+            0.0,
+            360.0 * deg);
+
+        G4LogicalVolume* logicAbsorber = new G4LogicalVolume(solidAbsorber,
+            graphite,
+            "Absorber");
+
+        // absorber position and rotation
+        G4double absorberZ = targetPos.getZ() + (absorberThickness / 2);
+        G4ThreeVector absorberPos = G4ThreeVector(0.0, 0.0, absorberZ);
+        G4RotationMatrix* absorberRot = new G4RotationMatrix();
+
+        // place the absorber
+        new G4PVPlacement(absorberRot,
+            absorberPos,
+            logicAbsorber,
+            "Absorber",
+            logicWorld,
+            false,
+            0);
+
+
+
         // create tungsten collimator
-        G4double innerColRadius = 5.0 * cm;
-        G4double outerColRadius = 15.0 * cm;
-        G4double colThickness = 5.0 * cm;
+        G4double innerColRadius = 4.0 * cm;
+        G4double outerColRadius = 7.0 * cm;
+        G4double colThickness = 6.2 * cm;
 
         G4Tubs* solidCol = new G4Tubs("Collimator",
             innerColRadius,
@@ -90,7 +124,11 @@ namespace G4_BREMS
             "Collimator");
 
         // collimator position and rotation
-        G4ThreeVector colPos = G4ThreeVector(0, 0, 10. * cm);
+        G4double colZ =
+            absorberZ
+            + (absorberThickness / 2)
+            + (colThickness / 2);
+        G4ThreeVector colPos = G4ThreeVector(0, 0, colZ);
         G4RotationMatrix* colRotation = new G4RotationMatrix();
 
         // place the collimator in the world
@@ -104,14 +142,14 @@ namespace G4_BREMS
         
 
         // Detector
-        G4double detectorXY = 20 * cm;
-        G4double detectorZ = 1 * cm;
+        G4double detectorSizeXY = 20 * cm;
+        G4double detectorSizeZ = 5 * cm;
 
         G4Box* solidDetector = new G4Box(
             "Detector",
-            detectorXY,
-            detectorXY,
-            detectorZ);
+            detectorSizeXY,
+            detectorSizeXY,
+            detectorSizeZ);
 
         G4LogicalVolume* logicDetector = new G4LogicalVolume(
             solidDetector,

@@ -3,9 +3,13 @@ A Geant4 Model of Bremsstrahlung or "braking radiation." In this model I will mi
 
 
 # Measurements
-- Electron energies = 6 MeV or 10 MeV based on the equation $U (V) = E_{electron} (eV)$ [1](#sources) In other words, a 6 MV beam of a linac would produce 6 MeV electrons.
+- Electron energies = 6 MeV based on the equation $U (V) = E_{electron} (eV)$ [1](#sources) In other words, a 6 MV beam of a linac would produce 6 MeV electrons.
 - Electron beam width: 1 mm [2](#sources)
-- From target to detector: 10 mm (need source)
+
+- Tungsten target=1mm thick and 3cm diameter
+- Graphite absorber=1.5cm thick and 3cm diameter
+- Tungsten collimator=6.2cm thick, 4 cm inner diameter and 7 cm outer diameter
+
 
 
 # Sources
