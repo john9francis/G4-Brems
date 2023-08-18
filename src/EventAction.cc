@@ -20,10 +20,17 @@ namespace G4_BREMS {
 	void EventAction::EndOfEventAction(const G4Event* anEvent) {
 		// end of event actions here
 		if (fEnergy > 0) {
+			G4cout
+				<< "Particle hit the detector"
+				<< G4endl;
 			G4cout 
-				<< "Energy deposited for this event: " 
-				<< fEnergy 
+				<< "Energy of this particle for this event: " 
 				<< G4BestUnit(fEnergy, "Energy")
+				<< G4endl;
+			G4cout
+				<< "Position of this particle: "
+				<< "X: "
+				<< G4BestUnit(fPosition.getX(), "Length")
 				<< G4endl;
 		}
 
@@ -31,5 +38,9 @@ namespace G4_BREMS {
 
 	void EventAction::AddEnergy(G4double energy) {
 		fEnergy += energy;
+	}
+
+	void EventAction::SetPosition(G4ThreeVector pos) {
+		fPosition = pos;
 	}
 }

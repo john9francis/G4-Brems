@@ -11,6 +11,7 @@ that energy will be summed up and kept track of here in the form of a "Hit."
 
 #include "G4UserEventAction.hh"
 #include "globals.hh"
+#include "G4ThreeVector.hh"
 
 namespace G4_BREMS {
 	class EventAction : public G4UserEventAction {
@@ -22,9 +23,10 @@ namespace G4_BREMS {
 		void EndOfEventAction(const G4Event* anEvent) override;
 
 		void AddEnergy(G4double energy);
+		void SetPosition(G4ThreeVector pos);
 	private:
 		G4double fEnergy;
-
+		G4ThreeVector fPosition;
 	};
 }
 

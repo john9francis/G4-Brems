@@ -39,7 +39,7 @@ namespace G4_BREMS {
 
 		// If it's the first step in the volume, save the position. 
 		if (step->IsFirstStepInVolume()) {
-
+			feventAction->SetPosition(step->GetPreStepPoint()->GetPosition());
 		}
 
 		// Register all the energy to the eventAction while it's in the detector.
