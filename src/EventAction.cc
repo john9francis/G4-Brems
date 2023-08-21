@@ -22,7 +22,6 @@ namespace G4_BREMS {
 		if (fEnergy > 0) {
 			G4cout 
 				<< "Energy deposited for this event: " 
-				<< fEnergy 
 				<< G4BestUnit(fEnergy, "Energy")
 				<< G4endl;
 		}
