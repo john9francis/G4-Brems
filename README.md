@@ -6,7 +6,7 @@ A Geant4 Model of Bremsstrahlung or "braking radiation." In this model I will mi
 - Electron beam width: 1 mm [2](#sources)
 
 - Tungsten target=1mm thick and 3cm diameter
-- Graphite absorber=1.5cm thick and 3cm diameter
+- Graphite electron absorber=1.5cm thick and 3cm diameter
 - Tungsten collimator=6.2cm thick, 4 cm inner diameter and 7 cm outer diameter
 
 
