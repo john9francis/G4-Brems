@@ -15,6 +15,8 @@ that energy will be summed up and kept track of here in the form of a "Hit."
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
 
+#include "RunAction.hh"
+
 // for hits
 #include "Hit.hh"
 
@@ -22,7 +24,7 @@ namespace G4_BREMS {
 
 	class EventAction : public G4UserEventAction {
 	public:
-		EventAction();
+		EventAction(RunAction* runAction);
 		~EventAction() override = default;
 
 		void BeginOfEventAction(const G4Event* anEvent) override;
@@ -36,6 +38,8 @@ namespace G4_BREMS {
 	private:
 		G4double fEnergy;
 		G4ThreeVector fPosition;
+
+		RunAction* fRunAction;
 	};
 
 	

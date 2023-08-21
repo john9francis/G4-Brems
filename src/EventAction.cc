@@ -3,9 +3,10 @@
 
 
 namespace G4_BREMS {
-	EventAction::EventAction() {
-		// define units (if needed)
+	EventAction::EventAction(RunAction* runAction) {
 		fEnergy = 0.;
+
+		fRunAction = runAction;
 	}
 
 	void EventAction::BeginOfEventAction(const G4Event* anEvent) {
@@ -21,7 +22,8 @@ namespace G4_BREMS {
 			hit->SetEnergy(fEnergy);
 			hit->SetPos(fPosition);
 
-			// send hit over to the runmanager
+			// send hit over to the run action
+			fRunAction->AddToGammaHits(hit);
 
 		}
 	}

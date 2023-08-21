@@ -8,17 +8,24 @@
 
 namespace G4_BREMS {
 
-	class RunAction : G4UserRunAction {
+	class HitsCollection;
+
+	class RunAction : public G4UserRunAction {
 	public:
 		RunAction();
 		~RunAction();
 
 		void BeginOfRunAction(const G4Run* aRun) override;
 		void EndOfRunAction(const G4Run* aRun) override;
+
+		void AddToGammaHits(Hit* h);
+
+	private:
+		HitsCollection* fGammaHits;
 	};
 
-	class HitsCollection : G4THitsCollection<Hit> {
-
+	class HitsCollection : public G4THitsCollection<Hit> {
+		
 	};
 
 
