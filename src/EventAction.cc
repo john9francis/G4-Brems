@@ -15,8 +15,15 @@ namespace G4_BREMS {
 	}
 
 	void EventAction::EndOfEventAction(const G4Event* anEvent) {
-		// end of event actions here
-		Print();
+		// Create a new hit
+		if (fEnergy > 0) {
+			Hit* hit = new Hit();
+			hit->SetEnergy(fEnergy);
+			hit->SetPos(fPosition);
+
+			// send hit over to the runmanager
+
+		}
 	}
 
 	void EventAction::Print() {

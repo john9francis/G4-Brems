@@ -34,6 +34,20 @@ namespace G4_BREMS {
 		G4double fEnergy;
 		G4ThreeVector fPosition;
 	};
+
+	// My own hit class
+	class Hit {
+	public:
+		Hit() { hEnergy = 0.; hPosition = G4ThreeVector(); };
+		~Hit() {};
+
+		void SetEnergy(G4double e) { hEnergy = e; }
+		void SetPos(G4ThreeVector p) { hPosition = p; }
+
+	private:
+		G4double hEnergy;
+		G4ThreeVector hPosition;
+	};
 }
 
 #endif // !G4_BREMS_EVENT_ACTION_HH
