@@ -16,13 +16,13 @@ A Geant4 Model of Bremsstrahlung or "braking radiation." In this model I will mi
 - 2: [How a Linear Accelerator Works Video (03:00)](https://www.youtube.com/watch?v=jSgnWfbEx1A)
 
 # Git with this remote branch
-This is the release-v1.0.0 branch. In order to make changes to this branch, follow these steps:
+This is the release-v0.1.0-alpha1 branch. In order to make changes to this branch, follow these steps:
 ```git
 git clone https://github.com/john9francis/G4-Brems.git
 ```
 First, checkout the correct branch
 ```git
-git checkout remotes/origin/release-v1.0.0
+git checkout remotes/origin/release-v0.1.0-alpha1
 ```
 You can also see a list of the branches by running,
 ```git
@@ -37,11 +37,11 @@ Once you are on the branch, add and commit like normal. But to push and pull, yo
 
 To pull to the specific branch, 
 ```git
-git pull origin release-v1.0.0
+git pull origin release-v0.1.0-alpha1
 ```
 To push to the specific branch,
 ```git
-git push origin HEAD:release-v1.0.0
+git push origin HEAD:release-v0.1.0-alpha1
 ```
 
 # Credit to Geant4
