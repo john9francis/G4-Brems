@@ -15,6 +15,9 @@ that energy will be summed up and kept track of here in the form of a "Hit."
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
 
+// for hits
+#include "Hit.hh"
+
 namespace G4_BREMS {
 
 	class EventAction : public G4UserEventAction {
@@ -35,19 +38,7 @@ namespace G4_BREMS {
 		G4ThreeVector fPosition;
 	};
 
-	// My own hit class
-	class Hit {
-	public:
-		Hit() { hEnergy = 0.; hPosition = G4ThreeVector(); };
-		~Hit() {};
-
-		void SetEnergy(G4double e) { hEnergy = e; }
-		void SetPos(G4ThreeVector p) { hPosition = p; }
-
-	private:
-		G4double hEnergy;
-		G4ThreeVector hPosition;
-	};
+	
 }
 
 #endif // !G4_BREMS_EVENT_ACTION_HH
