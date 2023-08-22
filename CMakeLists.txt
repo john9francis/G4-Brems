@@ -77,4 +77,4 @@ endif()
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
 #
-install(TARGETS Hello_World DESTINATION bin)
+install(TARGETS G4_Brems DESTINATION bin)
