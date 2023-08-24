@@ -12,24 +12,13 @@ namespace G4_BREMS {
 	// My own hit class
 	class Hit : public G4VHit {
 	public:
-		Hit() { hEnergy = 0.; hPosition = G4ThreeVector(); };
-		~Hit() {};
+		Hit();
+		~Hit() override = default;
 
-		void Print() override {
-			G4cout
-				<< "Energy: "
-				<< G4BestUnit(hEnergy, "Energy")
-				<< " "
-				<< "Position: "
-				<< G4BestUnit(hPosition.getX(), "Length")
-				<< G4BestUnit(hPosition.getY(), "Length")
-				<< G4BestUnit(hPosition.getZ(), "Length")
-				<< G4endl;
-			
-		}
+		void Print() override;
 
-		void SetEnergy(G4double e) { hEnergy = e; }
-		void SetPos(G4ThreeVector p) { hPosition = p; }
+		void SetEnergy(G4double e);
+		void SetPos(G4ThreeVector p);
 
 	private:
 		G4double hEnergy;
