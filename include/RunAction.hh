@@ -6,6 +6,9 @@
 #include "G4THitsCollection.hh"
 #include "Hit.hh"
 
+#include "G4AnalysisManager.hh"
+
+
 namespace G4_BREMS {
 
 	class HitsCollection;
@@ -23,6 +26,7 @@ namespace G4_BREMS {
 	private:
 		HitsCollection* fGammaHits;
 
+		G4GenericAnalysisManager* fAnalysisManager;
 	};
 
 	class HitsCollection : public G4THitsCollection<Hit> {

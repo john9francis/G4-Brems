@@ -25,9 +25,6 @@ int main(int argc, char** argv)
 		ui = new G4UIExecutive(argc, argv);
 	}
 
-	//test
-	G4cout << "Hello World!";
-
 	// ======================================================================
 	// RunManager, + 3 Required additions:
 	// PrimaryGeneratorAction,
