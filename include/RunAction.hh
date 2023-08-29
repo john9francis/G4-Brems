@@ -20,12 +20,9 @@ namespace G4_BREMS {
 
 		void AddToGammaHits(Hit* h);
 
-		G4double GetAverage(HitsCollection* hitsCol);
-
 	private:
 		HitsCollection* fGammaHits;
 
-		G4double fAverage;
 	};
 
 	class HitsCollection : public G4THitsCollection<Hit> {
