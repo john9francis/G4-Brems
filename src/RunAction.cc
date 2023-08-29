@@ -1,9 +1,14 @@
 
 #include "RunAction.hh"
+#include "G4AnalysisManager.hh"
 
 namespace G4_BREMS {
 	RunAction::RunAction() {
 		fGammaHits = new HitsCollection;
+
+		// create analysis manager
+		auto analysisManager = G4AnalysisManager::Instance();
+
 	}
 
 	RunAction::~RunAction() {
