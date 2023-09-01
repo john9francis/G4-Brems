@@ -33,8 +33,6 @@ namespace G4_BREMS {
 		void AddEnergy(G4double energy) { fEnergy += energy; };
 		void SetPosition(G4ThreeVector pos) { fPosition = pos; };
 
-		void Print();
-
 	private:
 		G4double fEnergy;
 		G4ThreeVector fPosition;
