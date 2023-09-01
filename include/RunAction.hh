@@ -27,6 +27,8 @@ namespace G4_BREMS {
 		HitsCollection* fGammaHits;
 
 		G4GenericAnalysisManager* fAnalysisManager;
+
+		G4String fNTupleFilename;
 	};
 
 	class HitsCollection : public G4THitsCollection<Hit> {
