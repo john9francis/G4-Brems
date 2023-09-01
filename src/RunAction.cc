@@ -1,5 +1,6 @@
 
 #include "RunAction.hh"
+#include "G4VHit.hh"
 
 namespace G4_BREMS {
 	RunAction::RunAction() {
@@ -15,11 +16,10 @@ namespace G4_BREMS {
 
 		// create nTuple to store the data:
 		fAnalysisManager->CreateNtuple("G4_Brems", "Hits");
-		fAnalysisManager->CreateNtupleIColumn("Photon Hits");
-		fAnalysisManager->CreateNtupleDColumn("Energy");
-		fAnalysisManager->CreateNtupleDColumn("PosX");
-		fAnalysisManager->CreateNtupleDColumn("PosY");
-		fAnalysisManager->CreateNtupleDColumn("PosZ");
+		fAnalysisManager->CreateNtupleIColumn("Photon Hit"); // id=0
+		// apparently the letter, F,D,or I corresponds to type.
+		fAnalysisManager->CreateNtupleFColumn("Energy"); //  id = 1
+		fAnalysisManager->CreateNtupleDColumn("Position"); //id = 2
 
 		fNTupleFilename = "G4BremsNTuple.csv";
 		fAnalysisManager->SetNtupleFileName(0, fNTupleFilename);
@@ -36,6 +36,14 @@ namespace G4_BREMS {
 
 	void RunAction::EndOfRunAction(const G4Run* aRun) {
 		fGammaHits->PrintAllHits();
+
+		// fill nTuple columns
+		for (int i = 0; i < fGammaHits->entries(); i++) {
+			// add the first entry (energy) into the first col (energy)
+			Hit* h = static_cast<Hit*>(fGammaHits->GetHit(i));
+			fAnalysisManager->FillNtupleDColumn(0, h->GetEnergy());
+		}
+
 
 		// write to output file
 		fAnalysisManager->Write();
