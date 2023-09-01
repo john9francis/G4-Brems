@@ -14,6 +14,8 @@ namespace G4_BREMS {
 
 		analysisManager->SetVerboseLevel(1);
 
+		analysisManager->SetFileName("Output");
+
 		// create nTuple to store the data:
 		analysisManager->CreateNtuple("G4_Brems", "Hits");
 		analysisManager->CreateNtupleIColumn("Photon Hit"); // id=0
@@ -21,7 +23,10 @@ namespace G4_BREMS {
 		analysisManager->CreateNtupleDColumn("Energy"); //  id = 1
 		analysisManager->CreateNtupleDColumn("Position"); //id = 2
 
-		fNTupleFilename = "G4BremsNTuple.root";
+		// don't forget to finish it
+		analysisManager->FinishNtuple();
+
+		fNTupleFilename = "G4BremsNTuple";
 		analysisManager->SetNtupleFileName(0, fNTupleFilename);
 	}
 
@@ -33,13 +38,18 @@ namespace G4_BREMS {
 		// open an output file:
 		auto analysisManager = G4AnalysisManager::Instance();
 
-		analysisManager->OpenFile(fNTupleFilename);
+		analysisManager->Reset();
+
+		analysisManager->OpenFile();
 	}
 
 	void RunAction::EndOfRunAction(const G4Run* aRun) {
 		fGammaHits->PrintAllHits();
 
 		auto analysisManager = G4AnalysisManager::Instance();
+
+		// write to output file
+		analysisManager->Write();
 
 		// fill nTuple columns
 		for (int i = 0; i < fGammaHits->entries(); i++) {
@@ -48,16 +58,17 @@ namespace G4_BREMS {
 			double energy = h->GetEnergy();
 
 			analysisManager->FillNtupleDColumn(1, energy);
+			analysisManager->AddNtupleRow();
 		}
 
-
-		// write to output file
-		analysisManager->Write();
-		analysisManager->CloseFile();
+		analysisManager->CloseFile(false);
 	}
 
 	void RunAction::AddToGammaHits(Hit* h) {
 		fGammaHits->insert(h);
+
+		//idea: add to ntuple here:?
+
 	}
 
 }
