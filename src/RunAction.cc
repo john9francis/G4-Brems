@@ -7,22 +7,22 @@ namespace G4_BREMS {
 		fGammaHits = new HitsCollection;
 
 		// create analysis manager
-		fAnalysisManager = G4AnalysisManager::Instance();
+		auto analysisManager = G4AnalysisManager::Instance();
 
 		// set default output file type
-		fAnalysisManager->SetDefaultFileType("csv");
+		analysisManager->SetDefaultFileType("csv");
 
-		fAnalysisManager->SetVerboseLevel(1);
+		analysisManager->SetVerboseLevel(1);
 
 		// create nTuple to store the data:
-		fAnalysisManager->CreateNtuple("G4_Brems", "Hits");
-		fAnalysisManager->CreateNtupleIColumn("Photon Hit"); // id=0
-		// apparently the letter, F,D,or I corresponds to type.
-		fAnalysisManager->CreateNtupleFColumn("Energy"); //  id = 1
-		fAnalysisManager->CreateNtupleDColumn("Position"); //id = 2
+		analysisManager->CreateNtuple("G4_Brems", "Hits");
+		analysisManager->CreateNtupleIColumn("Photon Hit"); // id=0
+		// The letters D, I, S, F correspond to types
+		analysisManager->CreateNtupleDColumn("Energy"); //  id = 1
+		analysisManager->CreateNtupleDColumn("Position"); //id = 2
 
-		fNTupleFilename = "G4BremsNTuple.csv";
-		fAnalysisManager->SetNtupleFileName(0, fNTupleFilename);
+		fNTupleFilename = "G4BremsNTuple.root";
+		analysisManager->SetNtupleFileName(0, fNTupleFilename);
 	}
 
 	RunAction::~RunAction() {
@@ -31,23 +31,29 @@ namespace G4_BREMS {
 
 	void RunAction::BeginOfRunAction(const G4Run* aRun) {
 		// open an output file:
-		fAnalysisManager->OpenFile(fNTupleFilename);
+		auto analysisManager = G4AnalysisManager::Instance();
+
+		analysisManager->OpenFile(fNTupleFilename);
 	}
 
 	void RunAction::EndOfRunAction(const G4Run* aRun) {
 		fGammaHits->PrintAllHits();
 
+		auto analysisManager = G4AnalysisManager::Instance();
+
 		// fill nTuple columns
 		for (int i = 0; i < fGammaHits->entries(); i++) {
 			// add the first entry (energy) into the first col (energy)
 			Hit* h = static_cast<Hit*>(fGammaHits->GetHit(i));
-			fAnalysisManager->FillNtupleDColumn(0, h->GetEnergy());
+			double energy = h->GetEnergy();
+
+			analysisManager->FillNtupleDColumn(1, energy);
 		}
 
 
 		// write to output file
-		fAnalysisManager->Write();
-		fAnalysisManager->CloseFile();
+		analysisManager->Write();
+		analysisManager->CloseFile();
 	}
 
 	void RunAction::AddToGammaHits(Hit* h) {

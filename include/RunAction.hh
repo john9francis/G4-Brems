@@ -26,8 +26,6 @@ namespace G4_BREMS {
 	private:
 		HitsCollection* fGammaHits;
 
-		G4GenericAnalysisManager* fAnalysisManager;
-
 		G4String fNTupleFilename;
 	};
 
