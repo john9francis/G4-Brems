@@ -9,10 +9,16 @@ namespace G4_BREMS {
 		// create analysis manager
 		auto analysisManager = G4AnalysisManager::Instance();
 
+		analysisManager->Reset();
+
 		// set default output file type
 		analysisManager->SetDefaultFileType("csv");
 
 		analysisManager->SetVerboseLevel(1);
+
+		//analysisManager->SetNtupleMerging(true); DOESNT WORK WITH CSV
+
+		analysisManager->SetNtupleActivation(true);
 
 		analysisManager->SetFileName("Output");
 
@@ -23,11 +29,6 @@ namespace G4_BREMS {
 		analysisManager->CreateNtupleDColumn("Energy"); //  id = 1
 		analysisManager->CreateNtupleDColumn("Position"); //id = 2
 
-		// don't forget to finish it
-		analysisManager->FinishNtuple();
-
-		fNTupleFilename = "G4BremsNTuple";
-		analysisManager->SetNtupleFileName(0, fNTupleFilename);
 	}
 
 	RunAction::~RunAction() {
@@ -35,18 +36,16 @@ namespace G4_BREMS {
 	}
 
 	void RunAction::BeginOfRunAction(const G4Run* aRun) {
-		// open an output file:
-		auto analysisManager = G4AnalysisManager::Instance();
-
-		analysisManager->Reset();
-
-		analysisManager->OpenFile();
+		
 	}
 
 	void RunAction::EndOfRunAction(const G4Run* aRun) {
 		fGammaHits->PrintAllHits();
 
+		// open an output file:
 		auto analysisManager = G4AnalysisManager::Instance();
+
+		analysisManager->OpenFile();
 
 		// write to output file
 		analysisManager->Write();
@@ -61,7 +60,6 @@ namespace G4_BREMS {
 			analysisManager->AddNtupleRow();
 		}
 
-		analysisManager->CloseFile(false);
 	}
 
 	void RunAction::AddToGammaHits(Hit* h) {
