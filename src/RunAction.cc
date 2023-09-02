@@ -12,11 +12,11 @@ namespace G4_BREMS {
 		analysisManager->Reset();
 
 		// set default output file type
-		analysisManager->SetDefaultFileType("csv");
+		analysisManager->SetDefaultFileType("root");
 
 		analysisManager->SetVerboseLevel(1);
 
-		//analysisManager->SetNtupleMerging(true); DOESNT WORK WITH CSV
+		analysisManager->SetNtupleMerging(true); //DOESNT WORK WITH CSV
 
 		analysisManager->SetNtupleActivation(true);
 

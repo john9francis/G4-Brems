@@ -10,8 +10,7 @@ namespace G4_BREMS {
 		~ActionInit() override = default;
 
 		void Build() const override;
-		//void BuildForMaster() const override;
-		// BuildForMaster is not neccesary to override technically
+		void BuildForMaster() const override;
 	
 	};
 }

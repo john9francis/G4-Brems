@@ -8,6 +8,7 @@
 namespace G4_BREMS {
 
 	void ActionInit::Build() const {
+		// Multithreaded
 
 		// set the Geant4 actions
 		SetUserAction(new PrimaryGeneratorAction);
@@ -21,5 +22,12 @@ namespace G4_BREMS {
 		SetUserAction(new SteppingAction(eventAction));
 
 	};
+
+	void ActionInit::BuildForMaster() const {
+		// Sequential
+
+		SetUserAction(new RunAction());
+
+	}
 
 }
