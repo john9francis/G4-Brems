@@ -12,11 +12,11 @@ namespace G4_BREMS {
 		analysisManager->Reset();
 
 		// set default output file type
-		analysisManager->SetDefaultFileType("root");
+		analysisManager->SetDefaultFileType("csv");
 
 		analysisManager->SetVerboseLevel(1);
 
-		analysisManager->SetNtupleMerging(true); //DOESNT WORK WITH CSV
+		//analysisManager->SetNtupleMerging(true); //DOESNT WORK WITH CSV
 
 		analysisManager->SetNtupleActivation(true);
 
@@ -47,8 +47,7 @@ namespace G4_BREMS {
 
 		analysisManager->OpenFile();
 
-		// write to output file
-		analysisManager->Write();
+		
 
 		// fill nTuple columns
 		for (int i = 0; i < fGammaHits->entries(); i++) {
@@ -59,6 +58,9 @@ namespace G4_BREMS {
 			analysisManager->FillNtupleDColumn(1, energy);
 			analysisManager->AddNtupleRow();
 		}
+
+		// write to output file
+		analysisManager->Write();
 
 	}
 
