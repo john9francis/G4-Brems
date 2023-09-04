@@ -10,9 +10,9 @@ namespace G4_BREMS {
 		auto analysisManager = G4AnalysisManager::Instance();
 
 		// set default output file type
-		analysisManager->SetDefaultFileType("csv");
+		analysisManager->SetDefaultFileType("root");
 
-		analysisManager->SetNtupleMerging(false);
+		analysisManager->SetNtupleMerging(true);
 
 		analysisManager->SetVerboseLevel(1);
 
