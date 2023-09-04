@@ -26,7 +26,9 @@ namespace G4_BREMS {
 		analysisManager->CreateNtupleIColumn("Photon Hit"); // id=0
 		// The letters D, I, S, F correspond to types
 		analysisManager->CreateNtupleDColumn("Energy"); //  id = 1
-		analysisManager->CreateNtupleDColumn("Position"); //id = 2
+		analysisManager->CreateNtupleDColumn("PositionX"); //id = 2
+		analysisManager->CreateNtupleDColumn("PositionY"); //id = 3
+		analysisManager->CreateNtupleDColumn("PositionZ"); //id = 4
 		analysisManager->FinishNtuple();
 
 	}
@@ -55,10 +57,16 @@ namespace G4_BREMS {
 			double energy = h->GetEnergy();
 
 			analysisManager->FillNtupleDColumn(1, energy);
+			
+
+			// add the position into the position columns
+			G4ThreeVector pos = h->GetPos();
+			analysisManager->FillNtupleDColumn(2, pos.getX());
+			analysisManager->FillNtupleDColumn(3, pos.getY());
+			analysisManager->FillNtupleDColumn(4, pos.getZ());
+
 			analysisManager->AddNtupleRow();
 
-			// add the position into the position column
-			G4ThreeVector pos = 
 		}
 
 		// write to output file
