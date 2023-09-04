@@ -24,20 +24,18 @@ namespace G4_BREMS {
 
 	class EventAction : public G4UserEventAction {
 	public:
-		EventAction(RunAction* runAction);
+		EventAction();
 		~EventAction() override = default;
 
 		void BeginOfEventAction(const G4Event* anEvent) override;
 		void EndOfEventAction(const G4Event* anEvent) override;
 
-		void AddEnergy(G4double energy) { fEnergy += energy; };
-		void SetPosition(G4ThreeVector pos) { fPosition = pos; };
+		void AddEnergy(G4double energy);
+		void SetPosition(G4ThreeVector pos);
 
 	private:
 		G4double fEnergy;
 		G4ThreeVector fPosition;
-
-		RunAction* fRunAction;
 	};
 
 	

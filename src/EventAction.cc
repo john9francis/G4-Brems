@@ -3,10 +3,8 @@
 #include "G4AnalysisManager.hh"
 
 namespace G4_BREMS {
-	EventAction::EventAction(RunAction* runAction) {
+	EventAction::EventAction() {
 		fEnergy = 0.;
-
-		fRunAction = runAction;
 	}
 
 	void EventAction::BeginOfEventAction(const G4Event* anEvent) {
@@ -14,9 +12,13 @@ namespace G4_BREMS {
 		fEnergy = 0.;
 
 	}
+	
+	// setting energy and position
+	void EventAction::AddEnergy(G4double e) { fEnergy += e; }
+	void EventAction::SetPosition(G4ThreeVector p) { fPosition = p; }
 
 	void EventAction::EndOfEventAction(const G4Event* anEvent) {
-		// Create a new hit
+		// if there was any energy deposited, tell the analysis manager.
 		if (fEnergy > 0) {
 
 			auto analysisManager = G4AnalysisManager::Instance();
@@ -36,14 +38,6 @@ namespace G4_BREMS {
 			// finally, go to the next ntuple row
 			analysisManager->AddNtupleRow();
 
-			/*
-			Hit* hit = new Hit();
-			hit->SetEnergy(fEnergy);
-			hit->SetPos(fPosition);
-
-			// send hit over to the run action
-			fRunAction->AddToGammaHits(hit);
-			*/
 		}
 	}
 

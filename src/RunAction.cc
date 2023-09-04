@@ -76,7 +76,6 @@ namespace G4_BREMS {
 
 	void RunAction::AddToGammaHits(Hit* h) {
 		fGammaHits->insert(h);
-
 	}
 
 }
