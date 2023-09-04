@@ -22,5 +22,8 @@ namespace G4_BREMS {
 	void Hit::SetEnergy(G4double e) { hEnergy = e; }
 	void Hit::SetPos(G4ThreeVector p) { hPosition = p; }
 
+	G4double Hit::GetEnergy() { return hEnergy; }
+	G4ThreeVector Hit::GetPos() { return hPosition; }
+
 
 }

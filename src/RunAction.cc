@@ -1,6 +1,7 @@
 
 #include "RunAction.hh"
 #include "G4VHit.hh"
+#include "G4ThreeVector.hh"
 
 namespace G4_BREMS {
 	RunAction::RunAction() {
@@ -55,6 +56,9 @@ namespace G4_BREMS {
 
 			analysisManager->FillNtupleDColumn(1, energy);
 			analysisManager->AddNtupleRow();
+
+			// add the position into the position column
+			G4ThreeVector pos = 
 		}
 
 		// write to output file
