@@ -1,0 +1,4 @@
+# A run that's a little more accurate, but doesn't take hours
+# just running 10 million particles
+/run/initialize
+/run/beamOn 10000000

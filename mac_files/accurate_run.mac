@@ -1,0 +1,4 @@
+# DANGER: will take a couple hours to complete!
+/run/initialize
+# We're going to run 4e9 particles
+/run/beamOn 4000000000
