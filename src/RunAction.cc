@@ -9,16 +9,14 @@ namespace G4_BREMS {
 		// create analysis manager
 		auto analysisManager = G4AnalysisManager::Instance();
 
-		analysisManager->Reset();
-
 		// set default output file type
 		analysisManager->SetDefaultFileType("csv");
+
+		analysisManager->SetNtupleMerging(false);
 
 		analysisManager->SetVerboseLevel(1);
 
 		//analysisManager->SetNtupleMerging(true); //DOESNT WORK WITH CSV
-
-		analysisManager->SetNtupleActivation(true);
 
 		analysisManager->SetFileName("Output");
 
@@ -28,6 +26,7 @@ namespace G4_BREMS {
 		// The letters D, I, S, F correspond to types
 		analysisManager->CreateNtupleDColumn("Energy"); //  id = 1
 		analysisManager->CreateNtupleDColumn("Position"); //id = 2
+		analysisManager->FinishNtuple();
 
 	}
 
@@ -36,7 +35,9 @@ namespace G4_BREMS {
 	}
 
 	void RunAction::BeginOfRunAction(const G4Run* aRun) {
-		
+		auto analysisManager = G4AnalysisManager::Instance();
+
+		analysisManager->OpenFile();
 	}
 
 	void RunAction::EndOfRunAction(const G4Run* aRun) {
@@ -44,9 +45,6 @@ namespace G4_BREMS {
 
 		// open an output file:
 		auto analysisManager = G4AnalysisManager::Instance();
-
-		analysisManager->OpenFile();
-
 		
 
 		// fill nTuple columns
@@ -61,6 +59,7 @@ namespace G4_BREMS {
 
 		// write to output file
 		analysisManager->Write();
+		analysisManager->CloseFile();
 
 	}
 
