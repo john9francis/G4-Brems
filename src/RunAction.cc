@@ -18,12 +18,11 @@ namespace G4_BREMS {
 
 		// create nTuple to store the data:
 		analysisManager->CreateNtuple("G4_Brems", "Hits");
-		analysisManager->CreateNtupleIColumn("Photon Hit"); // id=0
 		// The letters D, I, S, F correspond to types
-		analysisManager->CreateNtupleDColumn("Energy"); //  id = 1
-		analysisManager->CreateNtupleDColumn("PositionX"); //id = 2
-		analysisManager->CreateNtupleDColumn("PositionY"); //id = 3
-		analysisManager->CreateNtupleDColumn("PositionZ"); //id = 4
+		analysisManager->CreateNtupleDColumn("Energy"); //  id = 0
+		analysisManager->CreateNtupleDColumn("PositionX"); //id = 1
+		analysisManager->CreateNtupleDColumn("PositionY"); //id = 2
+		analysisManager->CreateNtupleDColumn("PositionZ"); //id = 3
 		analysisManager->FinishNtuple();
 
 	}
@@ -44,6 +43,7 @@ namespace G4_BREMS {
 		auto analysisManager = G4AnalysisManager::Instance();
 
 		// fill nTuple columns
+		/*
 		for (int i = 0; i < fGammaHits->entries(); i++) {
 			// add the id to the photon hit id column
 			analysisManager->FillNtupleIColumn(0, i);
@@ -65,6 +65,8 @@ namespace G4_BREMS {
 			analysisManager->AddNtupleRow();
 
 		}
+
+		*/
 
 		// write to output file
 		analysisManager->Write();
