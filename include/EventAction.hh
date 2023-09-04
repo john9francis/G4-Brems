@@ -17,8 +17,6 @@ that energy will be summed up and kept track of here in the form of a "Hit."
 
 #include "RunAction.hh"
 
-// for hits
-#include "Hit.hh"
 
 namespace G4_BREMS {
 

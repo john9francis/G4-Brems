@@ -3,9 +3,6 @@
 
 #include "G4UserRunAction.hh"
 
-#include "G4THitsCollection.hh"
-#include "Hit.hh"
-
 #include "G4AnalysisManager.hh"
 
 

@@ -1,6 +1,5 @@
 
 #include "RunAction.hh"
-#include "G4VHit.hh"
 #include "G4ThreeVector.hh"
 
 namespace G4_BREMS {
