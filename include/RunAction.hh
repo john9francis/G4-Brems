@@ -21,16 +21,8 @@ namespace G4_BREMS {
 		void BeginOfRunAction(const G4Run* aRun) override;
 		void EndOfRunAction(const G4Run* aRun) override;
 
-		void AddToGammaHits(Hit* h);
-
 	private:
-		HitsCollection* fGammaHits;
 
-		G4String fNTupleFilename;
-	};
-
-	class HitsCollection : public G4THitsCollection<Hit> {
-		
 	};
 
 
