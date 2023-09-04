@@ -10,15 +10,10 @@ namespace G4_BREMS {
 		// create analysis manager
 		auto analysisManager = G4AnalysisManager::Instance();
 
-		// set default output file type
+		// set default settings
 		analysisManager->SetDefaultFileType("root");
-
 		analysisManager->SetNtupleMerging(true);
-
 		analysisManager->SetVerboseLevel(1);
-
-		//analysisManager->SetNtupleMerging(true); //DOESNT WORK WITH CSV
-
 		analysisManager->SetFileName("Output");
 
 		// create nTuple to store the data:
@@ -46,13 +41,15 @@ namespace G4_BREMS {
 	void RunAction::EndOfRunAction(const G4Run* aRun) {
 		fGammaHits->PrintAllHits();
 
-		// open an output file:
 		auto analysisManager = G4AnalysisManager::Instance();
-		
 
 		// fill nTuple columns
 		for (int i = 0; i < fGammaHits->entries(); i++) {
-			// add the first entry (energy) into the first col (energy)
+			// add the id to the photon hit id column
+			analysisManager->FillNtupleIColumn(0, i);
+
+
+			// add the first entry (energy) into the energy column
 			Hit* h = static_cast<Hit*>(fGammaHits->GetHit(i));
 			double energy = h->GetEnergy();
 
@@ -77,8 +74,6 @@ namespace G4_BREMS {
 
 	void RunAction::AddToGammaHits(Hit* h) {
 		fGammaHits->insert(h);
-
-		//idea: add to ntuple here:?
 
 	}
 
