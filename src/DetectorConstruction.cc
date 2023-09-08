@@ -21,6 +21,7 @@ namespace G4_BREMS
 		// Start with constructing the world:
         G4double worldSize = 1 * m;
         G4Material* air = nist->FindOrBuildMaterial("G4_AIR");
+        G4Material* vacuum = nist->FindOrBuildMaterial("G4_Galactic");
 
         auto solidWorld = new G4Box("World",
             worldSize / 2,
@@ -29,7 +30,7 @@ namespace G4_BREMS
 
         // NOTE: the world is made of air... can I make it a vacuum somehow?
         auto logicWorld = new G4LogicalVolume(solidWorld,
-            air, 
+            vacuum, 
             "World");
 
         auto physWorld = new G4PVPlacement(nullptr,
