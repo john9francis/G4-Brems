@@ -4,6 +4,9 @@
 #include "G4ParticleTable.hh"
 #include "G4ParticleDefinition.hh"
 
+#include "Randomize.hh"
+
+
 namespace G4_BREMS
 {
 	PrimaryGeneratorAction::PrimaryGeneratorAction() {
@@ -14,11 +17,8 @@ namespace G4_BREMS
 		// define particle properties
 		const G4String& particleName = "e-";
 		G4double energy = 6. * MeV;
-		
-		// todo: Randomize x starting point within a 1 mm diameter
+	
 
-
-		G4ThreeVector position = G4ThreeVector(0, 0, -5 * cm);
 		G4ThreeVector momentumDirection = G4ThreeVector(0, 0, 1);
 
 		// default particle kinematic
@@ -27,7 +27,6 @@ namespace G4_BREMS
 			= particleTable->FindParticle(particleName);
 		fParticleGun->SetParticleDefinition(particle);
 		fParticleGun->SetParticleEnergy(energy);
-		fParticleGun->SetParticlePosition(position);
 		fParticleGun->SetParticleMomentumDirection(momentumDirection);
 	}
 
@@ -37,6 +36,27 @@ namespace G4_BREMS
 
 	void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 	{
+		// Randomize x and y starting point within a 1 mm diameter
+
+		G4double radius = .5 * mm;
+		
+		// generate random x and y positions within that radius
+		double x, y;
+
+		// to avoid using slow methods like sin and cos,
+		// we generate random values in a cube and regect the ones
+		// outside of a circle. This way 
+		do {
+			x = G4UniformRand() * (2.0 * radius) - radius;
+			y = G4UniformRand() * (2.0 * radius) - radius;
+		} while (x * x + y * y > radius * radius);
+
+		G4ThreeVector position = G4ThreeVector(x, y, -5 * cm);
+		fParticleGun->SetParticlePosition(position);
+
+		// randomize energy with a .127 MeV std:dev gaussean distribution
+
+
 		// satisfy "generate primaries" here.
 		fParticleGun->GeneratePrimaryVertex(event);
 	}
