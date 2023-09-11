@@ -1,4 +1,0 @@
-# DANGER: will take a couple hours to complete!
-/run/initialize
-# We're going to run 1e9 particles
-/run/beamOn 1000000000
