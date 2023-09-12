@@ -20,7 +20,6 @@ namespace G4_BREMS
 
 		// Start with constructing the world:
         G4double worldSize = 1 * m;
-        G4Material* air = nist->FindOrBuildMaterial("G4_AIR");
         G4Material* vacuum = nist->FindOrBuildMaterial("G4_Galactic");
 
         auto solidWorld = new G4Box("World",
@@ -28,7 +27,6 @@ namespace G4_BREMS
             worldSize / 2,
             worldSize);
 
-        // NOTE: the world is made of air... can I make it a vacuum somehow?
         auto logicWorld = new G4LogicalVolume(solidWorld,
             vacuum, 
             "World");
@@ -61,7 +59,7 @@ namespace G4_BREMS
             "Target");
 
         // target position and rotation
-        G4ThreeVector targetPos = G4ThreeVector(); // 0,0
+        G4ThreeVector targetPos = G4ThreeVector(); // 0,0,0
         G4RotationMatrix* targetRotation = new G4RotationMatrix();
 
         // place the target in the world
@@ -146,6 +144,11 @@ namespace G4_BREMS
         G4double detectorSizeXY = 20 * cm;
         G4double detectorSizeZ = 5 * cm;
 
+        // detector materials
+        //G4Material* water = nist->FindOrBuildMaterial("G4_WATER");
+        G4Material* lead = nist->FindOrBuildMaterial("G4_Pb");
+
+
         G4Box* solidDetector = new G4Box(
             "Detector",
             detectorSizeXY,
@@ -154,7 +157,9 @@ namespace G4_BREMS
 
         G4LogicalVolume* logicDetector = new G4LogicalVolume(
             solidDetector,
-            tungsten,
+            lead,
+            //tungsten,
+            //water,
             "Detector");
 
         G4ThreeVector detectorPos = G4ThreeVector(0, 0, 20 * cm);
