@@ -11,7 +11,7 @@ namespace G4_BREMS {
 		// set default settings
 		analysisManager->SetDefaultFileType("root");
 		analysisManager->SetNtupleMerging(true);
-		analysisManager->SetVerboseLevel(1);
+		analysisManager->SetVerboseLevel(0);
 		analysisManager->SetFileName("NTuples");
 
 		// create nTuple to store the data:
