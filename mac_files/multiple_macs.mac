@@ -1,0 +1,3 @@
+# testing if we can run multiple mac files with one
+# run test_run.mac 3 times:
+/control/loop test_run.mac count 0 2
