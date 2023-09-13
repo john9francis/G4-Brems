@@ -5,6 +5,9 @@
 
 #include "G4AnalysisManager.hh"
 
+// timing the run
+using namespace std::chrono;
+
 
 namespace G4_BREMS {
 
@@ -19,6 +22,12 @@ namespace G4_BREMS {
 		void EndOfRunAction(const G4Run* aRun) override;
 
 	private:
+
+		// std::chrono time points
+		time_point<high_resolution_clock> _beginTime;
+		time_point<high_resolution_clock> _endTime;
+
+		void PrintTime();
 
 	};
 

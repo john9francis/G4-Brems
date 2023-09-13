@@ -1,6 +1,8 @@
 
 #include "RunAction.hh"
 #include "G4ThreeVector.hh"
+#include "G4UnitsTable.hh"
+
 
 namespace G4_BREMS {
 	RunAction::RunAction() {
@@ -29,6 +31,9 @@ namespace G4_BREMS {
 	}
 
 	void RunAction::BeginOfRunAction(const G4Run* aRun) {
+		// start time
+		_beginTime = high_resolution_clock::now();
+
 		auto analysisManager = G4AnalysisManager::Instance();
 
 		analysisManager->OpenFile();
@@ -42,7 +47,20 @@ namespace G4_BREMS {
 		analysisManager->Write();
 		analysisManager->CloseFile();
 
+
+		// end time
+		_endTime = high_resolution_clock::now();
+
+		// print out the time it took
+		PrintTime();
 	}
 
+	void RunAction::PrintTime() {
+		auto time = duration_cast<seconds>(_endTime - _beginTime).count();
 
+		G4cout
+			<< "Time spent for run: "
+			<< G4BestUnit(time, "Time")
+			<< G4endl;
+	}
 }
