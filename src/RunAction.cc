@@ -32,7 +32,7 @@ namespace G4_BREMS {
 
 	void RunAction::BeginOfRunAction(const G4Run* aRun) {
 		// start time
-		_beginTime = high_resolution_clock::now();
+		fTimer.Start();
 
 		auto analysisManager = G4AnalysisManager::Instance();
 
@@ -49,18 +49,19 @@ namespace G4_BREMS {
 
 
 		// end time
-		_endTime = high_resolution_clock::now();
+		fTimer.Stop();
 
 		// print out the time it took
 		PrintTime();
 	}
 
 	void RunAction::PrintTime() {
-		auto time = duration_cast<seconds>(_endTime - _beginTime).count();
+		auto time = fTimer.GetRealElapsed();
 
 		G4cout
-			<< "Time spent for run: "
+			<< "Elapsed time: "
 			<< G4BestUnit(time, "Time")
 			<< G4endl;
+
 	}
 }

@@ -1,3 +1,0 @@
-# this mac file tests the random seed by shooting 100 particles.
-/run/initialize
-/run/beamOn 100

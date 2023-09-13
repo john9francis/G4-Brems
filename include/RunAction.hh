@@ -6,7 +6,8 @@
 #include "G4AnalysisManager.hh"
 
 // timing the run
-using namespace std::chrono;
+#include "G4Timer.hh"
+
 
 
 namespace G4_BREMS {
@@ -23,9 +24,7 @@ namespace G4_BREMS {
 
 	private:
 
-		// std::chrono time points
-		time_point<high_resolution_clock> _beginTime;
-		time_point<high_resolution_clock> _endTime;
+		G4Timer fTimer;
 
 		void PrintTime();
 
