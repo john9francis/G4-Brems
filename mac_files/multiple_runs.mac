@@ -1,5 +1,0 @@
-# test if we can do multiple runs with one mac file
-/run/initialize
-/run/beamOn 1000
-/run/beamOn 1000
-/run/beamOn 1000

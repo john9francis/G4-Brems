@@ -1,10 +1,11 @@
-# testing if we can run multiple mac files with one
+# Running 1e9 particles
+# Estimation: it will take 1.5 hrs
 
 # Open the output file
 /analysis/openFile
 
 # run test_run.mac 3 times: (args: mac_file, counter_name, initial_value, final_value)
-/control/loop test_run.mac count 0 5
+/control/loop medium_run.mac count 0 4
 
 # write to the file
 /analysis/write
