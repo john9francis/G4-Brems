@@ -60,7 +60,8 @@ namespace G4_BREMS {
 
 		G4cout
 			<< "Elapsed time: "
-			<< G4BestUnit(time, "Time")
+			<< time
+			<< " Seconds."
 			<< G4endl;
 
 	}
