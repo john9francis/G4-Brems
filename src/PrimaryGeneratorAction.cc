@@ -16,8 +16,6 @@ namespace G4_BREMS
 
 		// define particle properties
 		const G4String& particleName = "e-";
-		G4double energy = 6. * MeV;
-	
 
 		G4ThreeVector momentumDirection = G4ThreeVector(0, 0, 1);
 
@@ -26,7 +24,6 @@ namespace G4_BREMS
 		G4ParticleDefinition* particle
 			= particleTable->FindParticle(particleName);
 		fParticleGun->SetParticleDefinition(particle);
-		fParticleGun->SetParticleEnergy(energy);
 		fParticleGun->SetParticleMomentumDirection(momentumDirection);
 	}
 
@@ -37,7 +34,6 @@ namespace G4_BREMS
 	void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 	{
 		// Randomize x and y starting point within a 1 mm diameter
-
 		G4double radius = .5 * mm;
 		
 		// generate random x and y positions within that radius
@@ -55,6 +51,11 @@ namespace G4_BREMS
 		fParticleGun->SetParticlePosition(position);
 
 		// randomize energy with a .127 MeV std:dev gaussean distribution
+		G4double meanEnergy = 6. * MeV;
+		G4double stdDev = .127 * MeV;
+		G4double energy = G4RandGauss::shoot(meanEnergy, stdDev);
+
+		fParticleGun->SetParticleEnergy(energy);
 
 
 		// satisfy "generate primaries" here.
