@@ -1,3 +1,12 @@
 # a simple test run
 /run/initialize
+
+# open test output file
+/analysis/openFile test
+
 /run/beamOn 1000
+
+# Write to output file
+/analysis/write
+
+/analysis/closeFile

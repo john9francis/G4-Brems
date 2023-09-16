@@ -33,6 +33,10 @@ namespace G4_BREMS {
 	void RunAction::BeginOfRunAction(const G4Run* aRun) {
 		// start time
 		fTimer.Start();
+
+		auto analysisManager = G4AnalysisManager::Instance();
+
+		analysisManager->OpenFile();
 	}
 
 	void RunAction::EndOfRunAction(const G4Run* aRun) {
@@ -40,7 +44,8 @@ namespace G4_BREMS {
 		auto analysisManager = G4AnalysisManager::Instance();
 
 		// write to output file
-		//analysisManager->Write();
+		analysisManager->Write();
+		analysisManager->CloseFile();
 
 		// end time
 		fTimer.Stop();
