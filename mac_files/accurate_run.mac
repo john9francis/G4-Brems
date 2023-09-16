@@ -4,7 +4,7 @@
 # Open the output file
 /analysis/openFile accurate
 
-# run test_run.mac 3 times: (args: mac_file, counter_name, initial_value, final_value)
+# run medium_run.mac 100 times: (args: mac_file, counter_name, initial_value, final_value)
 /control/loop medium_run.mac count 0 99
 
 # write to the file

@@ -2,10 +2,5 @@
 # just running 10 million particles
 /run/initialize
 
-# Open output file
-/analysis/openFile medium
-
 /run/beamOn 10000000
 
-/analysis/write
-/analysis/closeFile
