@@ -51,30 +51,46 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET G4_Brems PROPERTY CXX_STANDARD 20)
 endif()
 
-#----------------------------------------------------------------------------
-# Copy all the mac files from "mac_files" directory into the
-# same directory as the executable.
-file(GLOB G4_Brems-SCRIPTS ${PROJECT_SOURCE_DIR}/mac_files/*)
-
-foreach(_script ${G4_Brems-SCRIPTS})
-  get_filename_component(_script_name ${_script} NAME)
-  configure_file(
-	  ${_script}
-	  ${PROJECT_BINARY_DIR}/Release/${_script_name}
-	  COPYONLY
-  )
-endforeach()
 
 #----------------------------------------------------------------------------
-# When the project is WIN32, set release settings.
-if(WIN32)
-  # remove Debug and other unnecessary configurations
-  set(CMAKE_CONFIGURATION_TYPES "Release" CACHE INTERNAL "")
-  # https://stackoverflow.com/a/37994396/1801749
-  set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT G4_Brems)
-endif()
+# remove Debug and other unnecessary configurations
+set(CMAKE_CONFIGURATION_TYPES "Release" CACHE INTERNAL "")
+
+# ---------------------------------------------------------------------------
+# Set startup project for visual studio
+set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT G4_Brems)
 
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
 #
 install(TARGETS G4_Brems DESTINATION bin)
+
+#----------------------------------------------------------------------------
+# Copy all the mac files from "mac_files" directory into the
+# same directory as the executable.
+file(GLOB G4_Brems-SCRIPTS ${PROJECT_SOURCE_DIR}/mac_files/*)
+
+
+foreach(_script ${G4_Brems-SCRIPTS})
+  get_filename_component(_script_name ${_script} NAME)
+  configure_file(
+    ${_script}
+    ${PROJECT_BINARY_DIR}/${_script_name}
+    COPYONLY
+  )
+endforeach()
+
+
+#----------------------------------------------------------------------------
+# For windows, copy the mac files into the release dir, just for convenience.
+#
+if(WIN32)
+  foreach(_script ${G4_Brems-SCRIPTS})
+    get_filename_component(_script_name ${_script} NAME)
+    configure_file(
+      ${_script}
+      ${PROJECT_BINARY_DIR}/Release/${_script_name}
+      COPYONLY
+    )
+  endforeach()
+endif()
