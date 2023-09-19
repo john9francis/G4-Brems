@@ -1,6 +1,8 @@
 # G4-Brems
 A Geant4 Model of Bremsstrahlung or "braking radiation." In this model I will mimic the production of Bremsstrahlung by shooting electrons at a tungsten target and detect the energies of the resulting x-ray photons. 
 
+am i on main?
+
 # Measurements
 - Electron energies = 6 MeV based on the equation $U (V) = E_{electron} (eV)$ [1](#sources) In other words, a 6 MV beam of a linac would produce 6 MeV electrons.
 - Electron beam width: 1 mm [2](#sources)
