@@ -25,6 +25,11 @@ namespace G4_BREMS
 			= particleTable->FindParticle(particleName);
 		fParticleGun->SetParticleDefinition(particle);
 		fParticleGun->SetParticleMomentumDirection(momentumDirection);
+
+		// (test) hardcode the energy and we'll change it in mac files
+		G4double energy = 6 * MeV;
+		fParticleGun->SetParticleEnergy(energy);
+
 	}
 
 	PrimaryGeneratorAction::~PrimaryGeneratorAction() {
@@ -51,11 +56,11 @@ namespace G4_BREMS
 		fParticleGun->SetParticlePosition(position);
 
 		// randomize energy with a .127 MeV std:dev gaussean distribution
-		G4double meanEnergy = 6. * MeV;
-		G4double stdDev = .127 * MeV;
-		G4double energy = G4RandGauss::shoot(meanEnergy, stdDev);
-
-		fParticleGun->SetParticleEnergy(energy);
+		//G4double meanEnergy = 20. * MeV;
+		//G4double stdDev = .127 * MeV;
+		//G4double energy = G4RandGauss::shoot(meanEnergy, stdDev);
+		//
+		//fParticleGun->SetParticleEnergy(energy);
 
 
 		// satisfy "generate primaries" here.

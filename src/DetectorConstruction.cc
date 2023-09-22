@@ -147,6 +147,10 @@ namespace G4_BREMS
         // detector materials
         //G4Material* water = nist->FindOrBuildMaterial("G4_WATER");
         G4Material* lead = nist->FindOrBuildMaterial("G4_Pb");
+        //G4Material* leadTungstate = nist->FindOrBuildMaterial("G4_PbWO4");
+        //G4Material* BGO = nist->FindOrBuildMaterial("G4_BGO");
+        //G4Material* lAr = nist->FindOrBuildMaterial("G4_lAr");
+        //G4Material* scin = nist->FindOrBuildMaterial("G4_PLASTIC_SC_VINYLTOLUENE");
 
 
         G4Box* solidDetector = new G4Box(
@@ -158,8 +162,6 @@ namespace G4_BREMS
         G4LogicalVolume* logicDetector = new G4LogicalVolume(
             solidDetector,
             lead,
-            //tungsten,
-            //water,
             "Detector");
 
         G4ThreeVector detectorPos = G4ThreeVector(0, 0, 20 * cm);

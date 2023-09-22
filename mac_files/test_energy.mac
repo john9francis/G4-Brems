@@ -1,0 +1,18 @@
+# a mac file to test what happens the higher energy we go
+
+/run/initialize
+
+/analysis/openFile test6mev
+/run/beamOn 10000000
+
+/analysis/write
+/analysis/closeFile
+
+# switch up the energy
+/gun/energy 40 MeV
+
+/analysis/openFile test40mev
+/run/beamOn 10000000
+
+/analysis/write
+/analysis/closeFile
