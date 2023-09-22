@@ -2,17 +2,52 @@
 
 /run/initialize
 
-/analysis/openFile test6mev
-/run/beamOn 10000000
+# this doesn't support loops, so I am going to code it all myself :(
 
+/analysis/openFile test5MeV
+/gun/energy 5 MeV
+/run/beamOn 10000000
 /analysis/write
 /analysis/closeFile
 
-# switch up the energy
-/gun/energy 40 MeV
-
-/analysis/openFile test40mev
+/analysis/openFile test10MeV
+/gun/energy 10 MeV
 /run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
 
+/analysis/openFile test15MeV
+/gun/energy 15 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
+
+/analysis/openFile test20MeV
+/gun/energy 20 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
+
+/analysis/openFile test25MeV
+/gun/energy 25 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
+
+/analysis/openFile test30MeV
+/gun/energy 30 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
+
+/analysis/openFile test35MeV
+/gun/energy 35 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
+
+/analysis/openFile test40MeV
+/gun/energy 40 MeV
+/run/beamOn 10000000
 /analysis/write
 /analysis/closeFile
