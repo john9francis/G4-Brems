@@ -1,0 +1,6 @@
+.devcontainer
+.vs
+build/
+docker_build/
+out/
+.gitignore
