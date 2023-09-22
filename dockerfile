@@ -12,4 +12,4 @@ RUN mkdir docker_build && \
   cmake .. && \
   make
 
-ENTRYPOINT [ "./docker_build/G4_Brems" ]
+ENTRYPOINT [ "/bin/bash" ]
