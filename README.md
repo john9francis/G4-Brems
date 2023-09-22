@@ -1,6 +1,23 @@
 # G4-Brems
 A Geant4 Model of Bremsstrahlung or "braking radiation." In this model I will mimic the production of Bremsstrahlung by shooting electrons at a tungsten target and detect the energies of the resulting x-ray photons. 
 
+# How to run on docker
+First, build the docker image
+```sh
+docker build -t g4-brems .      
+```
+Then, run the container
+```sh
+docker run --rm -it g4-brems   
+```
+The entrypoint to the container is bash. This way you can interact with the application as if it's a linux command line. To run the app for example, run these commands:
+```sh
+cd docker_build
+./G4_Brems test_run.mac
+```
+
+For now, it only generates a .root file. soon I will put root in this docker image so that we can view the data generated.
+
 # Measurements
 - Electron energies = 6 MeV based on the equation $U (V) = E_{electron} (eV)$ [1](#sources) In other words, a 6 MV beam of a linac would produce 6 MeV electrons.
 - Electron beam width: 1 mm [2](#sources)
