@@ -2,9 +2,9 @@
 A Geant4 Model of Bremsstrahlung or "braking radiation." In this model I will mimic the production of Bremsstrahlung by shooting electrons at a tungsten target and detect the energies of the resulting x-ray photons. 
 
 # How to run on docker
-First, build the docker image
+First, pull the docker image
 ```sh
-docker build -t g4-brems .      
+docker pull john9francis/g4-brems:latest
 ```
 Then, run the container
 ```sh
