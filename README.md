@@ -16,7 +16,9 @@ cd docker_build
 ./G4_Brems test_run.mac
 ```
 
-For now, it only generates a .root file. soon I will put root in this docker image so that we can view the data generated.
+NOTE: The G4_Brems executable does not work yet, because it tries to open a GUI and I haven't figured that out yet in docker. However, the G4_Brems_terminal works fine to run any commands you want in batch mode. 
+
+For now, running a simulation generates a .root file that can not be viewed within the container. Soon I plan to add root to the container to be able to view the data generated. 
 
 # Measurements
 - Electron energies = 6 MeV based on the equation $U (V) = E_{electron} (eV)$ [1](#sources) In other words, a 6 MV beam of a linac would produce 6 MeV electrons.
