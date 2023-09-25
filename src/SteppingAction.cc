@@ -5,6 +5,7 @@
 #include "G4Step.hh"
 #include "G4RunManager.hh"
 
+
 namespace G4_BREMS {
 	SteppingAction::SteppingAction(EventAction* eventAction) {
 		// Get our detector volume 
@@ -44,6 +45,13 @@ namespace G4_BREMS {
 
 		// Register all the energy to the eventAction while it's in the detector.
 		feventAction->AddEnergy(step->GetTotalEnergyDeposit());
+
+		//TESTING: print velocity to see if it's greater than c
+		G4double velocity = step->GetPreStepPoint()->GetVelocity();
+
+		G4cout 
+			<< G4BestUnit(velocity, "Velocity")
+			<< G4endl;
 		
 	}
 	
