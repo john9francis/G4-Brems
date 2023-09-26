@@ -47,11 +47,11 @@ namespace G4_BREMS {
 		feventAction->AddEnergy(step->GetTotalEnergyDeposit());
 
 		//TESTING: print velocity to see if it's greater than c
-		G4double velocity = step->GetPreStepPoint()->GetVelocity();
-
-		G4cout 
-			<< G4BestUnit(velocity, "Velocity")
-			<< G4endl;
+		//G4double velocity = step->GetPreStepPoint()->GetVelocity();
+		//
+		//G4cout 
+		//	<< G4BestUnit(velocity, "Velocity")
+		//	<< G4endl;
 		
 	}
 	
