@@ -58,9 +58,6 @@ endif()
 # remove Debug and other unnecessary configurations
 set(CMAKE_CONFIGURATION_TYPES "Release" CACHE INTERNAL "")
 
-# ---------------------------------------------------------------------------
-# Set startup project for visual studio
-set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT G4_Brems)
 
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX

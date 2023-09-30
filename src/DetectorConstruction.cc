@@ -71,7 +71,7 @@ namespace G4_BREMS
             false, 
             0);
 
-
+        /*
         // create a graphite absorber to absorb electrons
         G4Material* graphite = nist->FindOrBuildMaterial("G4_GRAPHITE");
 
@@ -139,13 +139,12 @@ namespace G4_BREMS
             false,
             0);
         
-
+        */
         // Detector
         G4double detectorSizeXY = 20 * cm;
         G4double detectorSizeZ = 5 * cm;
 
         // detector materials
-        //G4Material* water = nist->FindOrBuildMaterial("G4_WATER");
         G4Material* lead = nist->FindOrBuildMaterial("G4_Pb");
         //G4Material* leadTungstate = nist->FindOrBuildMaterial("G4_PbWO4");
         //G4Material* BGO = nist->FindOrBuildMaterial("G4_BGO");
@@ -164,7 +163,8 @@ namespace G4_BREMS
             lead,
             "Detector");
 
-        G4ThreeVector detectorPos = G4ThreeVector(0, 0, 20 * cm);
+        G4double detectorZ = targetThickness / 2 + detectorSizeZ + 5*cm;
+        G4ThreeVector detectorPos = G4ThreeVector(0, 0, detectorZ);
         G4RotationMatrix* detRotation = new G4RotationMatrix();
 
 
