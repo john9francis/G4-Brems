@@ -141,8 +141,8 @@ namespace G4_BREMS
         
         */
         // Detector
-        G4double detectorSizeXY = 20 * cm;
-        G4double detectorSizeZ = 5 * cm;
+        G4double detectorSizeXY = 50 * cm;
+        G4double detectorSizeZ = 15 * cm;
 
         // detector materials
         G4Material* lead = nist->FindOrBuildMaterial("G4_Pb");

@@ -1,0 +1,38 @@
+# a mac file to test electron energies from 4-9 mev
+/run/initialize
+
+/analysis/openFile test4MeV
+/gun/energy 4 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
+
+/analysis/openFile test5MeV
+/gun/energy 5 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
+
+/analysis/openFile test6MeV
+/gun/energy 6 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
+
+/analysis/openFile test7MeV
+/gun/energy 7 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
+
+/analysis/openFile test8MeV
+/gun/energy 8 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile
+
+/analysis/openFile test9MeV
+/gun/energy 9 MeV
+/run/beamOn 10000000
+/analysis/write
+/analysis/closeFile

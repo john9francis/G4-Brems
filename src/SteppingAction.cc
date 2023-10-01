@@ -38,6 +38,17 @@ namespace G4_BREMS {
 		// end here if the particle isn't in the detector
 		if (volume != fGammaDetector) { return;  }
 
+		// now, check what type of particle it is
+		G4Track* track = step->GetTrack();
+		G4ParticleDefinition* particleDefinition = track->GetDefinition();
+		G4String particleName = particleDefinition->GetParticleName();
+		G4cout << particleName << G4endl;
+
+		// filter out the e- (for now,)
+		// TODO: add a separate analysis for electrons
+		if (particleName != "gamma") { return; }
+
+
 		// If it's the first step in the volume, save the position. 
 		if (step->IsFirstStepInVolume()) {
 			feventAction->SetPosition(step->GetPreStepPoint()->GetPosition());
