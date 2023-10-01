@@ -71,7 +71,7 @@ namespace G4_BREMS
             false, 
             0);
 
-        /*
+        
         // create a graphite absorber to absorb electrons
         G4Material* graphite = nist->FindOrBuildMaterial("G4_GRAPHITE");
 
@@ -104,7 +104,7 @@ namespace G4_BREMS
             false,
             0);
 
-
+        /*
 
         // create tungsten collimator
         G4double innerColRadius = 4.0 * cm;
