@@ -42,7 +42,7 @@ namespace G4_BREMS {
 		G4Track* track = step->GetTrack();
 		G4ParticleDefinition* particleDefinition = track->GetDefinition();
 		G4String particleName = particleDefinition->GetParticleName();
-		G4cout << particleName << G4endl;
+		//G4cout << particleName << G4endl;
 
 		// filter out the e- (for now,)
 		// TODO: add a separate analysis for electrons
