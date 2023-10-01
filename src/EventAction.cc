@@ -16,12 +16,25 @@ namespace G4_BREMS {
 	// setting energy and position
 	void EventAction::AddEnergy(G4double e) { fEnergy += e; }
 	void EventAction::SetPosition(G4ThreeVector p) { fPosition = p; }
+	void EventAction::SetParticleName(G4String name) { fParticleName = name; }
 
 	void EventAction::EndOfEventAction(const G4Event* anEvent) {
 		// if there was any energy deposited, tell the analysis manager.
 		if (fEnergy > 0) {
 
 			auto analysisManager = G4AnalysisManager::Instance();
+
+			G4int ntupleId;
+
+			if (fParticleName == "gamma") {
+				ntupleId = 0;
+			}
+			if (fParticleName == "e-") {
+				ntupleId = 1;
+			}
+			else {
+				return;
+			}
 
 			// add all the info to the analysis nTuples
 			// set the column id's (see runaction)
@@ -30,16 +43,15 @@ namespace G4_BREMS {
 			G4int posYColumnId = 2;
 			G4int posZColumnId = 3;
 
-			analysisManager->FillNtupleDColumn(energyColumnId, fEnergy);
-			analysisManager->FillNtupleDColumn(posXColumnId, fPosition.getX());
-			analysisManager->FillNtupleDColumn(posYColumnId, fPosition.getY());
-			analysisManager->FillNtupleDColumn(posZColumnId, fPosition.getZ());
+			analysisManager->FillNtupleDColumn(ntupleId, energyColumnId, fEnergy);
+			analysisManager->FillNtupleDColumn(ntupleId, posXColumnId, fPosition.getX());
+			analysisManager->FillNtupleDColumn(ntupleId, posYColumnId, fPosition.getY());
+			analysisManager->FillNtupleDColumn(ntupleId, posZColumnId, fPosition.getZ());
 
 			// finally, go to the next ntuple row
-			analysisManager->AddNtupleRow();
+			analysisManager->AddNtupleRow(ntupleId);
 
-			// print to console
-			//Print();
+
 
 		}
 	}

@@ -42,11 +42,9 @@ namespace G4_BREMS {
 		G4Track* track = step->GetTrack();
 		G4ParticleDefinition* particleDefinition = track->GetDefinition();
 		G4String particleName = particleDefinition->GetParticleName();
-		//G4cout << particleName << G4endl;
-
-		// filter out the e- (for now,)
-		// TODO: add a separate analysis for electrons
-		if (particleName != "gamma") { return; }
+		
+		// set the particle name in eventAction so it knows which ntuple to fill
+		feventAction->SetParticleName(particleName);
 
 
 		// If it's the first step in the volume, save the position. 
