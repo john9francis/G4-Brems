@@ -8,6 +8,8 @@
 #include "G4NistManager.hh"
 #include "G4LogicalVolume.hh"
 
+#include "G4Sphere.hh"
+
 namespace G4_BREMS {
     G4VPhysicalVolume* TestDetConst::Construct() {
 
@@ -72,6 +74,28 @@ namespace G4_BREMS {
 
 
         // create our detector, a hollow sphere around the entire system
+        G4double outerRadius = 25 * cm;
+        G4double innerRadius = 8 * cm;
+
+        G4Material* lead = nist->FindOrBuildMaterial("G4_Pb");
+        G4ThreeVector targetCenterPoint = G4ThreeVector(); // 0,0,0
+
+        G4Sphere* sphereSolid = new G4Sphere("HollowSphereSolid", innerRadius, outerRadius, 0, 360 * deg, 0, 180 * deg);
+        G4LogicalVolume* sphereLogical = new G4LogicalVolume(sphereSolid, lead, "HollowSphereLogical");
+
+        G4VPhysicalVolume* spherePhysical = new G4PVPlacement(
+            nullptr, // No rotation
+            targetCenterPoint, // Position
+            sphereLogical, // Logical volume
+            "HollowSpherePhysical", // Name
+            logicWorld, // Mother volume
+            false, // No boolean operations
+            0, // Copy number
+            true); // Check overlaps
+
+
+        // set the sphere as our gamma detector
+        fGammaDetector = sphereLogical;
 
 
         return physWorld;
