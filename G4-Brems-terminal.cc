@@ -7,6 +7,7 @@
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"
 #include "ActionInit.hh"
+#include "TestDetConst.hh"
 
 using namespace G4_BREMS;
 
@@ -17,7 +18,7 @@ int main(int argc, char** argv)
 		G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
 
 	// set 3 required initialization classes
-	runManager->SetUserInitialization(new DetectorConstruction());
+	runManager->SetUserInitialization(new TestDetConst());
 	runManager->SetUserInitialization(new PhysicsList());
 	runManager->SetUserInitialization(new ActionInit());
 
