@@ -44,7 +44,7 @@ namespace G4_BREMS {
 		G4String particleName = particleDefinition->GetParticleName();
 		
 		// set the particle name in eventAction so it knows which ntuple to fill
-		feventAction->SetParticleName(particleName);
+		//feventAction->SetParticleName(particleName);
 
 
 		// If it's the first step in the volume, save the position. 

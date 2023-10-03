@@ -24,49 +24,19 @@ namespace G4_BREMS {
 
 			auto analysisManager = G4AnalysisManager::Instance();
 
-			G4int ntupleId;
+			// add all the info to the analysis nTuples
+			G4int energyColumnId = 0;
+			G4int posXColumnId = 1;
+			G4int posYColumnId = 2;
+			G4int posZColumnId = 3;
 
-			if (fParticleName == "gamma") {
-				ntupleId = 0;
-				// add all the info to the analysis nTuples
-				// set the column id's (see runaction)
-				G4int energyColumnId = 0;
-				G4int posXColumnId = 1;
-				G4int posYColumnId = 2;
-				G4int posZColumnId = 3;
+			analysisManager->FillNtupleDColumn(energyColumnId, fEnergy);
+			analysisManager->FillNtupleDColumn(posXColumnId, fPosition.getX());
+			analysisManager->FillNtupleDColumn(posYColumnId, fPosition.getY());
+			analysisManager->FillNtupleDColumn(posZColumnId, fPosition.getZ());
 
-				analysisManager->FillNtupleDColumn(ntupleId, energyColumnId, fEnergy);
-				analysisManager->FillNtupleDColumn(ntupleId, posXColumnId, fPosition.getX());
-				analysisManager->FillNtupleDColumn(ntupleId, posYColumnId, fPosition.getY());
-				analysisManager->FillNtupleDColumn(ntupleId, posZColumnId, fPosition.getZ());
-
-				// finally, go to the next ntuple row
-				analysisManager->AddNtupleRow(ntupleId);
-			}
-			else if (fParticleName == "e-") {
-				ntupleId = 1;
-				// add all the info to the analysis nTuples
-				// set the column id's (see runaction)
-				G4int energyColumnId = 0;
-				G4int posXColumnId = 1;
-				G4int posYColumnId = 2;
-				G4int posZColumnId = 3;
-
-				analysisManager->FillNtupleDColumn(ntupleId, energyColumnId, fEnergy);
-				analysisManager->FillNtupleDColumn(ntupleId, posXColumnId, fPosition.getX());
-				analysisManager->FillNtupleDColumn(ntupleId, posYColumnId, fPosition.getY());
-				analysisManager->FillNtupleDColumn(ntupleId, posZColumnId, fPosition.getZ());
-
-				// finally, go to the next ntuple row
-				analysisManager->AddNtupleRow(ntupleId);
-			}
-			else {
-				return;
-			}
-
-
-
-
+			// finally, go to the next ntuple row
+			analysisManager->AddNtupleRow();
 
 		}
 	}
