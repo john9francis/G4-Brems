@@ -28,28 +28,43 @@ namespace G4_BREMS {
 
 			if (fParticleName == "gamma") {
 				ntupleId = 0;
+				// add all the info to the analysis nTuples
+				// set the column id's (see runaction)
+				G4int energyColumnId = 0;
+				G4int posXColumnId = 1;
+				G4int posYColumnId = 2;
+				G4int posZColumnId = 3;
+
+				analysisManager->FillNtupleDColumn(ntupleId, energyColumnId, fEnergy);
+				analysisManager->FillNtupleDColumn(ntupleId, posXColumnId, fPosition.getX());
+				analysisManager->FillNtupleDColumn(ntupleId, posYColumnId, fPosition.getY());
+				analysisManager->FillNtupleDColumn(ntupleId, posZColumnId, fPosition.getZ());
+
+				// finally, go to the next ntuple row
+				analysisManager->AddNtupleRow(ntupleId);
 			}
-			if (fParticleName == "e-") {
+			else if (fParticleName == "e-") {
 				ntupleId = 1;
+				// add all the info to the analysis nTuples
+				// set the column id's (see runaction)
+				G4int energyColumnId = 0;
+				G4int posXColumnId = 1;
+				G4int posYColumnId = 2;
+				G4int posZColumnId = 3;
+
+				analysisManager->FillNtupleDColumn(ntupleId, energyColumnId, fEnergy);
+				analysisManager->FillNtupleDColumn(ntupleId, posXColumnId, fPosition.getX());
+				analysisManager->FillNtupleDColumn(ntupleId, posYColumnId, fPosition.getY());
+				analysisManager->FillNtupleDColumn(ntupleId, posZColumnId, fPosition.getZ());
+
+				// finally, go to the next ntuple row
+				analysisManager->AddNtupleRow(ntupleId);
 			}
 			else {
 				return;
 			}
 
-			// add all the info to the analysis nTuples
-			// set the column id's (see runaction)
-			G4int energyColumnId = 0;
-			G4int posXColumnId = 1;
-			G4int posYColumnId = 2;
-			G4int posZColumnId = 3;
 
-			analysisManager->FillNtupleDColumn(ntupleId, energyColumnId, fEnergy);
-			analysisManager->FillNtupleDColumn(ntupleId, posXColumnId, fPosition.getX());
-			analysisManager->FillNtupleDColumn(ntupleId, posYColumnId, fPosition.getY());
-			analysisManager->FillNtupleDColumn(ntupleId, posZColumnId, fPosition.getZ());
-
-			// finally, go to the next ntuple row
-			analysisManager->AddNtupleRow(ntupleId);
 
 
 
