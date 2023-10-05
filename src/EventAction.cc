@@ -38,12 +38,17 @@ namespace G4_BREMS {
 			// finally, go to the next ntuple row
 			analysisManager->AddNtupleRow();
 
+			// print to console
+			//Print();
+
 		}
 	}
 
 	void EventAction::Print() {
 		G4cout
-			<< "Energy: "
+			<< "Particle: "
+			<< fParticleName
+			<< " Energy: "
 			<< G4BestUnit(fEnergy, "Energy")
 			<< "Position: "
 			<< G4BestUnit(fPosition.getX(), "Length")
