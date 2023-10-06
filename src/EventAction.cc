@@ -46,9 +46,7 @@ namespace G4_BREMS {
 
 	void EventAction::Print() {
 		G4cout
-			<< "Particle: "
-			<< fParticleName
-			<< " Energy: "
+			<< "Energy: "
 			<< G4BestUnit(fEnergy, "Energy")
 			<< "Position: "
 			<< G4BestUnit(fPosition.getX(), "Length")

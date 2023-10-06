@@ -43,8 +43,8 @@ namespace G4_BREMS {
 		G4ParticleDefinition* particleDefinition = track->GetDefinition();
 		G4String particleName = particleDefinition->GetParticleName();
 
-		// different particle tests
-		//if (particleName != "gamma") { return; }
+		if (particleName != "gamma") { return;  }
+
 		
 		// set the particle name in eventAction so it knows which ntuple to fill
 		feventAction->SetParticleName(particleName);
