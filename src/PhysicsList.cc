@@ -3,6 +3,7 @@
 #include "G4EmStandardPhysics.hh"
 
 #include "G4EmLivermorePhysics.hh"
+#include "G4EmPenelopePhysics.hh"
 
 // Different options to test
 #include "G4EmStandardPhysics_option1.hh"
@@ -17,7 +18,7 @@ namespace G4_BREMS
 {
 	PhysicsList::PhysicsList() : G4VModularPhysicsList() {
 		// Get the standard EM particles
-		RegisterPhysics(new G4EmStandardPhysics());
+		RegisterPhysics(new G4EmPenelopePhysics());
 
 		//RegisterPhysics(new G4EmStandardPhysics_option1);
 		//RegisterPhysics(new G4EmStandardPhysics_option2);

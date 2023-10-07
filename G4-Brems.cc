@@ -51,10 +51,10 @@ int main(int argc, char** argv)
 	visManager->Initialize();
 
 	// random seed
-	long seed = 12345;
-
-	CLHEP::HepRandom::setTheSeed(seed);
-	G4Random::setTheSeed(seed);
+	//long seed = 12345;
+	//
+	//CLHEP::HepRandom::setTheSeed(seed);
+	//G4Random::setTheSeed(seed);
 
 	// START UI =============================================================
 
