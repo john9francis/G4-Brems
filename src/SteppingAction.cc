@@ -28,43 +28,36 @@ namespace G4_BREMS {
 	}
 
 	void SteppingAction::UserSteppingAction(const G4Step* step) {
-		// Register hit if the step is inside the tracking volume
-		
-		// get volume of the current step
-		G4LogicalVolume* volume
-			= step->GetPreStepPoint()->GetTouchableHandle()
-			->GetVolume()->GetLogicalVolume();
+		// Check if secondary particles are created (bremsstrahlung photons)
+		// and send them over to event action.
 
-		// end here if the particle isn't in the detector
-		if (volume != fGammaDetector) { return;  }
+		// check how many secondaries
+		G4int nSecondaryParticles = step->GetNumberOfSecondariesInCurrentStep();
 
-		// now, check what type of particle it is
-		G4Track* track = step->GetTrack();
-		G4ParticleDefinition* particleDefinition = track->GetDefinition();
-		G4String particleName = particleDefinition->GetParticleName();
+		// end here if there were no secondaries
+		if (nSecondaryParticles == 0) { return; }
 
-		if (particleName != "gamma") { return;  }
+		// create a list of all secondary particles created in this step
+		const std::vector<const G4Track*>* secondaries
+			= step->GetSecondaryInCurrentStep();
 
-		
-		// set the particle name in eventAction so it knows which ntuple to fill
-		feventAction->SetParticleName(particleName);
+		// send each particle to the eventAction
+		for (G4int i = 0; i < nSecondaryParticles; i++) {
+			// get track object which has kinetic energy and particle definition
+			const G4Track* track = (*secondaries)[i];
+			
+			// get all the info off the particle
+			const G4ParticleDefinition* particle = track->GetParticleDefinition();
+			G4String name = particle->GetParticleName();
+			// testing:
+			G4cout << name << G4endl;
+			G4double energy = track->GetKineticEnergy();
 
+			// send all the info to eventAction
 
-		// If it's the first step in the volume, save the position. 
-		if (step->IsFirstStepInVolume()) {
-			feventAction->SetPosition(step->GetPreStepPoint()->GetPosition());
 		}
 
-		// Register all the energy to the eventAction while it's in the detector.
-		feventAction->AddEnergy(step->GetTotalEnergyDeposit());
 
-		//TESTING: print velocity to see if it's greater than c
-		//G4double velocity = step->GetPreStepPoint()->GetVelocity();
-		//
-		//G4cout 
-		//	<< G4BestUnit(velocity, "Velocity")
-		//	<< G4endl;
-		
 	}
 	
 }
