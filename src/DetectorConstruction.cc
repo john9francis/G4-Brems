@@ -71,7 +71,7 @@ namespace G4_BREMS
             false, 
             0);
 
-        
+        /*
         // create a graphite absorber to absorb electrons
         G4Material* graphite = nist->FindOrBuildMaterial("G4_GRAPHITE");
 
@@ -104,7 +104,7 @@ namespace G4_BREMS
             false,
             0);
 
-        /*
+        
 
         // create tungsten collimator
         G4double innerColRadius = 4.0 * cm;
@@ -139,7 +139,7 @@ namespace G4_BREMS
             false,
             0);
         
-        */
+        
         // Detector
         G4double detectorSizeXY = 50 * cm;
         G4double detectorSizeZ = 15 * cm;
@@ -180,6 +180,8 @@ namespace G4_BREMS
         // Define this detector as the gamma detector
         fGammaDetector = logicDetector;
 	
+        */
+
         return physWorld;
     }
 

@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 		G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
 
 	// set 3 required initialization classes
-	runManager->SetUserInitialization(new TestDetConst());
+	runManager->SetUserInitialization(new DetectorConstruction());
 	runManager->SetUserInitialization(new PhysicsList());
 	runManager->SetUserInitialization(new ActionInit());
 

@@ -5,6 +5,7 @@
 #include "G4UIExecutive.hh"
 #include "G4RunManagerFactory.hh"
 #include "G4VisExecutive.hh"
+#include "G4SteppingVerbose.hh"
 
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"
@@ -38,8 +39,8 @@ int main(int argc, char** argv)
 		G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
 	
 	// set 3 required initialization classes
-	runManager->SetUserInitialization(new TestDetConst());
 	runManager->SetUserInitialization(new PhysicsList());
+	runManager->SetUserInitialization(new DetectorConstruction());
 	runManager->SetUserInitialization(new ActionInit());
 
 	// ======================================================================
@@ -51,10 +52,10 @@ int main(int argc, char** argv)
 	visManager->Initialize();
 
 	// random seed
-	//long seed = 12345;
-	//
-	//CLHEP::HepRandom::setTheSeed(seed);
-	//G4Random::setTheSeed(seed);
+	long seed = 12345;
+	
+	CLHEP::HepRandom::setTheSeed(seed);
+	G4Random::setTheSeed(seed);
 
 	// START UI =============================================================
 

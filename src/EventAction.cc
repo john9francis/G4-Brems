@@ -39,7 +39,7 @@ namespace G4_BREMS {
 			analysisManager->AddNtupleRow();
 
 			// print to console
-			//Print();
+			Print();
 
 		}
 	}
@@ -48,10 +48,10 @@ namespace G4_BREMS {
 		G4cout
 			<< "Energy: "
 			<< G4BestUnit(fEnergy, "Energy")
-			<< "Position: "
-			<< G4BestUnit(fPosition.getX(), "Length")
-			<< G4BestUnit(fPosition.getY(), "Length")
-			<< G4BestUnit(fPosition.getZ(), "Length")
+			//<< "Position: "
+			//<< G4BestUnit(fPosition.getX(), "Length")
+			//<< G4BestUnit(fPosition.getY(), "Length")
+			//<< G4BestUnit(fPosition.getZ(), "Length")
 			<< G4endl;
 	}
 
