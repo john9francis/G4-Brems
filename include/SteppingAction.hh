@@ -21,6 +21,8 @@ namespace G4_BREMS {
 
 		EventAction* feventAction = nullptr;
 
+		G4bool fOneParticleFlag;
+
 	};
 
 }

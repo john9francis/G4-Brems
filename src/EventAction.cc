@@ -39,7 +39,7 @@ namespace G4_BREMS {
 			analysisManager->AddNtupleRow();
 
 			// print to console
-			Print();
+			//Print();
 
 		}
 	}
