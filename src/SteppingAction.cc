@@ -50,8 +50,9 @@ namespace G4_BREMS {
 			const G4ParticleDefinition* particle = track->GetParticleDefinition();
 			G4String name = particle->GetParticleName();
 			// testing:
-			G4cout << name << G4endl;
-			G4double energy = track->GetKineticEnergy();
+			G4double energy = track->GetTotalEnergy();
+			G4cout << name << " " << G4BestUnit(energy, "Energy") << G4endl;
+
 
 			// send all the info to eventAction
 

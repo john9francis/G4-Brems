@@ -1,0 +1,31 @@
+# start up
+/run/initialize
+#
+# open a HepRep file
+/vis/open HepRepFile
+#
+# draw geometry
+/vis/drawVolume
+#
+# Make all volumes visible
+/vis/geometry/set/visibility all 1 true
+#
+# Specify view angle:
+/vis/viewer/set/viewpointVector -1 0 0
+#
+# Draw smooth trajectories at end of event, showing trajectory points
+# as markers 2 pixels wide:
+/vis/scene/add/trajectories smooth
+/vis/modeling/trajectories/create/drawByParticleID
+/vis/modeling/trajectories/drawByParticleID-0/default/setDrawStepPts true
+/vis/modeling/trajectories/drawByParticleID-0/default/setStepPtsSize 2
+#
+# draw only gammas:
+#/vis/filtering/trajectories/create/particleFilter
+#/vis/filtering/trajectories/particleFilter-0/add gamma
+#
+# Make the "World" box invisible
+/vis/geometry/set/visibility World 0 false
+#
+# Superimpose all of the events from a given run:
+/vis/scene/endOfEventAction accumulate

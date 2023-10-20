@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 	}
 	else {
 		// run visualization
-		UImanager->ApplyCommand("/control/execute vis.mac");
+		UImanager->ApplyCommand("/control/execute hepVis.mac");
 
 		// use UI
 		ui->SessionStart();
