@@ -22,7 +22,7 @@ namespace G4_BREMS {
 		}
 
 		// initialize the bool flag
-		fOneParticleFlag = true;
+		fFirstParticleRecorded = false;
 
 	}
 
@@ -39,39 +39,33 @@ namespace G4_BREMS {
 
 		// end here if there were no secondaries
 		if (nSecondaryParticles == 0) { return; }
-		if (!fOneParticleFlag) { return; }
+
+		if (fFirstParticleRecorded) { return; }
+
 
 		// create a list of all secondary particles created in this step
 		const std::vector<const G4Track*>* secondaries
 			= step->GetSecondaryInCurrentStep();
 
-		// send each particle to the eventAction
-		/*
-		for (G4int i = 0; i < nSecondaryParticles; i++) {
-			// get track object which has kinetic energy and particle definition
-			const G4Track* track = (*secondaries)[i];
-			
-			// get all the info off the particle
-			const G4ParticleDefinition* particle = track->GetParticleDefinition();
-			G4String name = particle->GetParticleName();
-			// testing:
-			G4double energy = track->GetTotalEnergy();
-			//G4cout << name << " " << G4BestUnit(energy, "Energy") << G4endl;
-
-
-			// send all the info to eventAction
-			feventAction->AddEnergy(energy);
-
-		}
-		*/
-
 		// get the first secondary, it should be a gamma
 		const G4Track* track = (*secondaries)[0];
+
+		const G4ParticleDefinition* particle = track->GetParticleDefinition();
+
+		G4String particleName = particle->GetParticleName();
+		G4cout << particleName << G4endl;
+
+		fFirstParticleRecorded = true;
+
+
+		if (particleName != "gamma") { return; }
+
+
 		G4double energy = track->GetTotalEnergy();
 		feventAction->AddEnergy(energy);
 
-		// make sure we only get one secondary
-		fOneParticleFlag = false;
+		G4cout << G4BestUnit(energy, "Energy") << G4endl;
+
 
 
 	}
