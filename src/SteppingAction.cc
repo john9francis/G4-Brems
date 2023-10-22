@@ -27,7 +27,7 @@ namespace G4_BREMS {
 	}
 
 	SteppingAction::~SteppingAction() {
-
+		fFirstParticleRecorded = false;
 	}
 
 	void SteppingAction::UserSteppingAction(const G4Step* step) {
@@ -40,7 +40,7 @@ namespace G4_BREMS {
 		// end here if there were no secondaries
 		if (nSecondaryParticles == 0) { return; }
 
-		if (fFirstParticleRecorded) { return; }
+		//if (fFirstParticleRecorded) { return; }
 
 
 		// create a list of all secondary particles created in this step
@@ -55,7 +55,7 @@ namespace G4_BREMS {
 		G4String particleName = particle->GetParticleName();
 		G4cout << particleName << G4endl;
 
-		fFirstParticleRecorded = true;
+		//fFirstParticleRecorded = true;
 
 
 		if (particleName != "gamma") { return; }

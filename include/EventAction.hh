@@ -38,6 +38,8 @@ namespace G4_BREMS {
 		G4double fEnergy;
 		G4ThreeVector fPosition;
 		G4String fParticleName;
+
+		G4int fCounter;
 	};
 
 	

@@ -5,20 +5,34 @@
 namespace G4_BREMS {
 	EventAction::EventAction() {
 		fEnergy = 0.;
+		fCounter = 0;
 	}
 
 	void EventAction::BeginOfEventAction(const G4Event* anEvent) {
 		// begin of event actions here
 		fEnergy = 0.;
 
+		G4cout << "Begin event" << G4endl;
+		fCounter = 0;
 	}
 	
 	// setting energy and position
-	void EventAction::AddEnergy(G4double e) { fEnergy += e; }
+	void EventAction::AddEnergy(G4double e) { 
+		if (fCounter == 0) {
+			fEnergy += e;
+			G4cout << fCounter << G4endl;
+
+		}
+		
+		fCounter++;
+	}
 	void EventAction::SetPosition(G4ThreeVector p) { fPosition = p; }
 	void EventAction::SetParticleName(G4String name) { fParticleName = name; }
 
 	void EventAction::EndOfEventAction(const G4Event* anEvent) {
+
+		G4cout << "End Event" << G4endl;
+
 		// if there was any energy deposited, tell the analysis manager.
 		if (fEnergy > 0) {
 
