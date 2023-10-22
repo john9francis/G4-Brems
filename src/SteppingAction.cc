@@ -40,8 +40,6 @@ namespace G4_BREMS {
 		// end here if there were no secondaries
 		if (nSecondaryParticles == 0) { return; }
 
-		//if (fFirstParticleRecorded) { return; }
-
 
 		// create a list of all secondary particles created in this step
 		const std::vector<const G4Track*>* secondaries
@@ -53,9 +51,6 @@ namespace G4_BREMS {
 		const G4ParticleDefinition* particle = track->GetParticleDefinition();
 
 		G4String particleName = particle->GetParticleName();
-		G4cout << particleName << G4endl;
-
-		//fFirstParticleRecorded = true;
 
 
 		if (particleName != "gamma") { return; }
@@ -63,9 +58,6 @@ namespace G4_BREMS {
 
 		G4double energy = track->GetTotalEnergy();
 		feventAction->AddEnergy(energy);
-
-		G4cout << G4BestUnit(energy, "Energy") << G4endl;
-
 
 
 	}
