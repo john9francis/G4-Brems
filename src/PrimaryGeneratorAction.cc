@@ -45,8 +45,8 @@ namespace G4_BREMS
 		double x, y;
 
 		// to avoid using slow methods like sin and cos,
-		// we generate random values in a cube and regect the ones
-		// outside of a circle. This way 
+		// we generate random values in a square and regect the ones
+		// outside of a circle. 
 		do {
 			x = G4UniformRand() * (2.0 * radius) - radius;
 			y = G4UniformRand() * (2.0 * radius) - radius;
@@ -55,15 +55,12 @@ namespace G4_BREMS
 		G4ThreeVector position = G4ThreeVector(x, y, -5 * cm);
 		fParticleGun->SetParticlePosition(position);
 
-		/*
-		// randomize energy with a .127 MeV std:dev gaussean distribution
-		G4double meanEnergy = 6. * MeV;
+		// Get the hardcoded energy and randomize it follwing a gaussean distribution
+		G4double absoluteEnergy = fParticleGun->GetParticleEnergy();
 		G4double stdDev = .127 * MeV;
-		G4double energy = G4RandGauss::shoot(meanEnergy, stdDev);
-		
-		fParticleGun->SetParticleEnergy(energy);
-		*/
 
+		fParticleGun->SetParticleEnergy(G4RandGauss::shoot(absoluteEnergy, stdDev));
+		G4cout << fParticleGun->GetParticleEnergy() << G4endl;
 
 		// satisfy "generate primaries" here.
 		fParticleGun->GeneratePrimaryVertex(event);
