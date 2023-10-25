@@ -29,15 +29,11 @@ namespace G4_BREMS {
 		void EndOfEventAction(const G4Event* anEvent) override;
 
 		void AddEnergy(G4double energy);
-		void SetPosition(G4ThreeVector pos);
-		void SetParticleName(G4String name);
 
 		void Print();
 
 	private:
 		G4double fEnergy;
-		G4ThreeVector fPosition;
-		G4String fParticleName;
 
 		G4int fCounter;
 	};

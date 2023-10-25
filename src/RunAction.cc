@@ -14,15 +14,12 @@ namespace G4_BREMS {
 		analysisManager->SetDefaultFileType("root");
 		analysisManager->SetNtupleMerging(true);
 		analysisManager->SetVerboseLevel(0);
-		analysisManager->SetFileName("NTuples");
+		analysisManager->SetFileName("EnergySpectrum");
 
 		// create nTuple to store the particle energies
 		const G4int ntupleId1 = analysisManager->CreateNtuple("Particle Spectrum", "Particle Spectrum");
 		// The letters D, I, S, F correspond to types
 		analysisManager->CreateNtupleDColumn(ntupleId1, "Energy"); //   id = 0
-		analysisManager->CreateNtupleDColumn(ntupleId1, "PositionX"); //id = 1
-		analysisManager->CreateNtupleDColumn(ntupleId1, "PositionY"); //id = 2
-		analysisManager->CreateNtupleDColumn(ntupleId1, "PositionZ"); //id = 3
 		analysisManager->FinishNtuple(ntupleId1);
 	}
 

@@ -22,8 +22,6 @@ namespace G4_BREMS {
 		
 		fCounter++;
 	}
-	void EventAction::SetPosition(G4ThreeVector p) { fPosition = p; }
-	void EventAction::SetParticleName(G4String name) { fParticleName = name; }
 
 	void EventAction::EndOfEventAction(const G4Event* anEvent) {
 
@@ -39,9 +37,6 @@ namespace G4_BREMS {
 			G4int posZColumnId = 3;
 
 			analysisManager->FillNtupleDColumn(energyColumnId, fEnergy);
-			analysisManager->FillNtupleDColumn(posXColumnId, fPosition.getX());
-			analysisManager->FillNtupleDColumn(posYColumnId, fPosition.getY());
-			analysisManager->FillNtupleDColumn(posZColumnId, fPosition.getZ());
 
 			// finally, go to the next ntuple row
 			analysisManager->AddNtupleRow();
@@ -56,10 +51,6 @@ namespace G4_BREMS {
 		G4cout
 			<< "Energy: "
 			<< G4BestUnit(fEnergy, "Energy")
-			//<< "Position: "
-			//<< G4BestUnit(fPosition.getX(), "Length")
-			//<< G4BestUnit(fPosition.getY(), "Length")
-			//<< G4BestUnit(fPosition.getZ(), "Length")
 			<< G4endl;
 	}
 
