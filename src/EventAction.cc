@@ -34,6 +34,7 @@ namespace G4_BREMS {
 
 			// add all the info to the analysis nTuples
 			analysisManager->FillNtupleDColumn(0, fEnergy);
+			//G4cout << "Energy recorded: " << G4BestUnit(fEnergy, "Energy") << G4endl;
 
 			// finally, go to the next ntuple row
 			analysisManager->AddNtupleRow();
@@ -43,7 +44,7 @@ namespace G4_BREMS {
 
 		}
 
-		G4cout << "Event energy: " << G4BestUnit(fEnergy, "Energy") << G4endl;
+		//G4cout << "Event energy: " << G4BestUnit(fEnergy, "Energy") << G4endl;
 	}
 
 	void EventAction::Print() {

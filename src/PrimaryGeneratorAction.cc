@@ -58,11 +58,11 @@ namespace G4_BREMS
 		fParticleGun->SetParticlePosition(position);
 
 		// Get the hardcoded energy and randomize it follwing a gaussean distribution
-		G4double absoluteEnergy = fParticleGun->GetParticleEnergy();
-		G4double stdDev = .127 * MeV;
+		//G4double absoluteEnergy = fParticleGun->GetParticleEnergy();
+		//G4double stdDev = .127 * MeV;
 
-		fParticleGun->SetParticleEnergy(G4RandGauss::shoot(absoluteEnergy, stdDev));
-		G4cout << "Initial Energy: " << G4BestUnit(fParticleGun->GetParticleEnergy(), "Energy") << G4endl;
+		//fParticleGun->SetParticleEnergy(G4RandGauss::shoot(absoluteEnergy, stdDev));
+		//G4cout << "Initial Energy: " << G4BestUnit(fParticleGun->GetParticleEnergy(), "Energy") << G4endl;
 
 		// satisfy "generate primaries" here.
 		fParticleGun->GeneratePrimaryVertex(event);
