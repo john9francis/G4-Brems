@@ -47,6 +47,7 @@ namespace G4_BREMS {
 
 
 		G4double energy = track->GetTotalEnergy();
+		G4cout << "Secondary energy: " << G4BestUnit(energy, "Energy") << G4endl;
 		feventAction->AddEnergy(energy);
 
 

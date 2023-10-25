@@ -42,6 +42,8 @@ namespace G4_BREMS {
 			//Print();
 
 		}
+
+		G4cout << "Event energy: " << G4BestUnit(fEnergy, "Energy") << G4endl;
 	}
 
 	void EventAction::Print() {

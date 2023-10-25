@@ -6,6 +6,8 @@
 
 #include "Randomize.hh"
 
+#include "G4UnitsTable.hh"
+
 
 namespace G4_BREMS
 {
@@ -60,7 +62,7 @@ namespace G4_BREMS
 		G4double stdDev = .127 * MeV;
 
 		fParticleGun->SetParticleEnergy(G4RandGauss::shoot(absoluteEnergy, stdDev));
-		//G4cout << fParticleGun->GetParticleEnergy() << G4endl;
+		G4cout << "Initial Energy: " << G4BestUnit(fParticleGun->GetParticleEnergy(), "Energy") << G4endl;
 
 		// satisfy "generate primaries" here.
 		fParticleGun->GeneratePrimaryVertex(event);
