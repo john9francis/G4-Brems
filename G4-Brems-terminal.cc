@@ -7,7 +7,6 @@
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"
 #include "ActionInit.hh"
-#include "TestDetConst.hh"
 
 using namespace G4_BREMS;
 

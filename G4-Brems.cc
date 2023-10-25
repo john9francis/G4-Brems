@@ -9,7 +9,6 @@
 
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"
-#include "TestDetConst.hh"
 
 #include "ActionInit.hh"
 
