@@ -17,11 +17,8 @@ namespace G4_BREMS {
 		void UserSteppingAction(const G4Step*) override;
 
 	private:
-		G4LogicalVolume* fGammaDetector = nullptr;
-
 		EventAction* feventAction = nullptr;
 
-		G4bool fFirstParticleRecorded;
 
 	};
 

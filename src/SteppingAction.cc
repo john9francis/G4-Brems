@@ -8,12 +8,6 @@
 
 namespace G4_BREMS {
 	SteppingAction::SteppingAction(EventAction* eventAction) {
-		// Get our detector volume 
-		const auto detConstruction = static_cast<const DetectorConstruction*>(
-			G4RunManager::GetRunManager()->GetUserDetectorConstruction()
-			);
-		fGammaDetector = detConstruction->GetGammaDetector();
-
 
 		if (eventAction) {
 			// set the event action
@@ -21,13 +15,9 @@ namespace G4_BREMS {
 
 		}
 
-		// initialize the bool flag
-		fFirstParticleRecorded = false;
-
 	}
 
 	SteppingAction::~SteppingAction() {
-		fFirstParticleRecorded = false;
 	}
 
 	void SteppingAction::UserSteppingAction(const G4Step* step) {

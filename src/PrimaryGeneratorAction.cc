@@ -46,7 +46,7 @@ namespace G4_BREMS
 
 		// to avoid using slow methods like sin and cos,
 		// we generate random values in a square and regect the ones
-		// outside of a circle. 
+		// outside of a circle.
 		do {
 			x = G4UniformRand() * (2.0 * radius) - radius;
 			y = G4UniformRand() * (2.0 * radius) - radius;

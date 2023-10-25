@@ -13,10 +13,6 @@ namespace G4_BREMS
 
 		G4VPhysicalVolume* Construct() override;
 
-		G4LogicalVolume* GetGammaDetector() const { return fGammaDetector; }
-
-	private:
-		G4LogicalVolume* fGammaDetector = nullptr;
 	};
 }
 
