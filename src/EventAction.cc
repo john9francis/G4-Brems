@@ -16,6 +16,8 @@ namespace G4_BREMS {
 	
 	// setting energy and position
 	void EventAction::AddEnergy(G4double e) { 
+
+		// using counter to make sure we only get one particle's energy
 		if (fCounter == 0) {
 			fEnergy += e;
 		}
@@ -31,12 +33,7 @@ namespace G4_BREMS {
 			auto analysisManager = G4AnalysisManager::Instance();
 
 			// add all the info to the analysis nTuples
-			G4int energyColumnId = 0;
-			G4int posXColumnId = 1;
-			G4int posYColumnId = 2;
-			G4int posZColumnId = 3;
-
-			analysisManager->FillNtupleDColumn(energyColumnId, fEnergy);
+			analysisManager->FillNtupleDColumn(0, fEnergy);
 
 			// finally, go to the next ntuple row
 			analysisManager->AddNtupleRow();
