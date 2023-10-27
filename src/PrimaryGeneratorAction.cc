@@ -19,13 +19,17 @@ namespace G4_BREMS
 		// define particle properties
 		const G4String& particleName = "e-";
 
-		G4ThreeVector momentumDirection = G4ThreeVector(0, 0, 1);
 
-		// default particle kinematic
+		// Find the particle (e-) in the G4Particle table
 		G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
 		G4ParticleDefinition* particle
 			= particleTable->FindParticle(particleName);
+
+		// Set the particle type to the particle gun
 		fParticleGun->SetParticleDefinition(particle);
+
+		// set the particle's direction:
+		G4ThreeVector momentumDirection = G4ThreeVector(0, 0, 1);
 		fParticleGun->SetParticleMomentumDirection(momentumDirection);
 
 		// (test) hardcode the energy and we'll change it in mac files
@@ -56,13 +60,6 @@ namespace G4_BREMS
 
 		G4ThreeVector position = G4ThreeVector(x, y, -5 * cm);
 		fParticleGun->SetParticlePosition(position);
-
-		// Get the hardcoded energy and randomize it follwing a gaussean distribution
-		//G4double absoluteEnergy = fParticleGun->GetParticleEnergy();
-		//G4double stdDev = .127 * MeV;
-
-		//fParticleGun->SetParticleEnergy(G4RandGauss::shoot(absoluteEnergy, stdDev));
-		//G4cout << "Initial Energy: " << G4BestUnit(fParticleGun->GetParticleEnergy(), "Energy") << G4endl;
 
 		// satisfy "generate primaries" here.
 		fParticleGun->GeneratePrimaryVertex(event);
