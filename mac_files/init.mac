@@ -1,4 +1,3 @@
 # Macro for starting app without visualization
 
-/control/verbose 2
-/run/verbose 2
+/run/initialize

@@ -7,6 +7,8 @@
 namespace G4_BREMS {
 	RunAction::RunAction() {
 
+		// Set up analysis nTuples and output files
+		// 
 		// access analysis manager
 		auto analysisManager = G4AnalysisManager::Instance();
 
@@ -47,7 +49,9 @@ namespace G4_BREMS {
 		fTimer.Stop();
 
 		// print out the time it took
-		PrintTime();
+		if (IsMaster()) {
+			PrintTime();
+		}
 	}
 
 	void RunAction::PrintTime() {
