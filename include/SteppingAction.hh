@@ -3,7 +3,6 @@
 
 #include "G4UserSteppingAction.hh"
 #include "G4LogicalVolume.hh"
-#include "EventAction.hh"
 
 
 namespace G4_BREMS {
