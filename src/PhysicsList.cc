@@ -20,32 +20,15 @@ namespace G4_BREMS
 {
 	PhysicsList::PhysicsList() : G4VModularPhysicsList() {
 		// Get the standard EM particles
-		//RegisterPhysics(new G4EmStandardPhysics());
-
-		//RegisterPhysics(new G4EmPenelopePhysics());
-
-		//RegisterPhysics(new G4EmStandardPhysics_option1);
-		//RegisterPhysics(new G4EmStandardPhysics_option2);
-
-		G4LossTableManager::Instance();
-
-		fEmPhysicsList = new G4EmStandardPhysics();
-		RegisterPhysics(fEmPhysicsList);
-
-	}
-	PhysicsList::~PhysicsList() {
-		delete fEmPhysicsList;
+		RegisterPhysics(new G4EmStandardPhysics());
 	}
 
-	void PhysicsList::ConstructParticle()
-	{
-		fEmPhysicsList->ConstructParticle();
+	void PhysicsList::ConstructParticle(){
+		G4VModularPhysicsList::ConstructParticle();
 	}
 
 
 	void PhysicsList::ConstructProcess() {
-		// Construct processes here
-		AddTransportation();
-		fEmPhysicsList->ConstructProcess();
+		G4VModularPhysicsList::ConstructProcess();
 	}
 }

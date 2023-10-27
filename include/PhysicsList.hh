@@ -10,14 +10,12 @@ namespace G4_BREMS
 	{
 	public:
 		PhysicsList();
-		virtual ~PhysicsList();
+		virtual ~PhysicsList() override = default;
 
 		// Mandatory methods to override;
 		virtual void ConstructParticle() override;
 		virtual void ConstructProcess() override;
 
-	private:
-		G4VPhysicsConstructor* fEmPhysicsList;
 	};
 }
 
