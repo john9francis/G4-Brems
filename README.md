@@ -26,15 +26,16 @@ For now, running a simulation generates a .root file that can not be viewed with
 SETUP 1
 - Electron energies = 6 MeV based on the equation $U (V) = E_{electron} (eV)$ [1](#sources) In other words, a 6 MV beam of a linac would produce 6 MeV electrons.
 - Electron beam width: 1 mm [2](#sources)
-
 - Tungsten target=1mm thick and 3cm diameter
+
+<!--
 - Graphite electron absorber=1.5cm thick and 3cm diameter
 - Tungsten collimator=6.2cm thick, 4 cm inner diameter and 7 cm outer diameter
 
 SETUP 2:
 - target-detector distance: 5 cm
 
-
+-->
 # Sources
 - 1: [Bremsstrahlung article](https://folk.ntnu.no/floban/KJ%20%203055/X%20%20Ray/Bremsstrahlung.htm)
 - 2: [How a Linear Accelerator Works Video (03:00)](https://www.youtube.com/watch?v=jSgnWfbEx1A)
