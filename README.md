@@ -23,7 +23,7 @@ NOTE: The G4_Brems executable does not work yet, because it tries to open a GUI 
 For now, running a simulation generates a .root file that can not be viewed within the container. Soon I plan to add root to the container to be able to view the data generated. 
 
 # Measurements
-SETUP 1
+
 - Electron energies = 6 MeV based on the equation $U (V) = E_{electron} (eV)$ [1](#sources) In other words, a 6 MV beam of a linac would produce 6 MeV electrons.
 - Electron beam width: 1 mm [2](#sources)
 - Tungsten target=1mm thick and 3cm diameter
