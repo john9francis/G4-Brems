@@ -15,7 +15,7 @@ namespace G4_BREMS {
 
 		SetUserAction(new RunAction());
 
-		SetUserAction(new EventAction());
+		//SetUserAction(new EventAction());
 
 		SetUserAction(new SteppingAction());
 
