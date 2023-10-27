@@ -8,14 +8,7 @@
 #include "G4AnalysisManager.hh"
 
 namespace G4_BREMS {
-	SteppingAction::SteppingAction(EventAction* eventAction) {
-
-		if (eventAction) {
-			// set the event action
-			feventAction = eventAction;
-
-		}
-
+	SteppingAction::SteppingAction() {
 	}
 
 	SteppingAction::~SteppingAction() {
@@ -51,8 +44,6 @@ namespace G4_BREMS {
 		auto analysisManager = G4AnalysisManager::Instance();
 		analysisManager->FillNtupleDColumn(0, energy);
 		analysisManager->AddNtupleRow();
-
-		//feventAction->AddEnergy(energy);
 
 
 	}

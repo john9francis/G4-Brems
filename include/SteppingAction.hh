@@ -11,14 +11,10 @@ namespace G4_BREMS {
 
 	class SteppingAction : public G4UserSteppingAction {
 	public:
-		SteppingAction(EventAction* eventAction = nullptr);
+		SteppingAction();
 		~SteppingAction();
 
 		void UserSteppingAction(const G4Step*) override;
-
-	private:
-		EventAction* feventAction = nullptr;
-
 
 	};
 
