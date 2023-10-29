@@ -59,9 +59,6 @@ namespace G4_BREMS {
 		// set the flag because we got the gamma for this track
 		fFirstSecondaryRecorded = true;
 
-		// print for debugging
-		G4cout << G4BestUnit(energy, "Energy") << G4endl;
-
 
 	}
 	
