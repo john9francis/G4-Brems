@@ -7,8 +7,11 @@
 
 #include "G4AnalysisManager.hh"
 
+#include "G4UnitsTable.hh"
+
 namespace G4_BREMS {
 	SteppingAction::SteppingAction() {
+		fFirstSecondaryRecorded = false;
 	}
 
 	SteppingAction::~SteppingAction() {
@@ -17,6 +20,14 @@ namespace G4_BREMS {
 	void SteppingAction::UserSteppingAction(const G4Step* step) {
 		// Check if secondary particles are created (bremsstrahlung photons)
 		// and send them over to event action.
+
+		// set a flag to make sure we only get the first secondary
+		if (step->IsFirstStepInVolume()) {
+			fFirstSecondaryRecorded = false;
+		}
+
+		// end here if we already recorded a secondary 
+		if (fFirstSecondaryRecorded) { return; }
 
 		// check how many secondaries
 		G4int nSecondaryParticles = step->GetNumberOfSecondariesInCurrentStep();
@@ -44,6 +55,12 @@ namespace G4_BREMS {
 		auto analysisManager = G4AnalysisManager::Instance();
 		analysisManager->FillNtupleDColumn(0, energy);
 		analysisManager->AddNtupleRow();
+
+		// set the flag because we got the gamma for this track
+		fFirstSecondaryRecorded = true;
+
+		// print for debugging
+		G4cout << G4BestUnit(energy, "Energy") << G4endl;
 
 
 	}
