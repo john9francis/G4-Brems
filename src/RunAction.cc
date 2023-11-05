@@ -18,11 +18,17 @@ namespace G4_BREMS {
 		analysisManager->SetVerboseLevel(0);
 		analysisManager->SetFileName("EnergySpectrum");
 
-		// create nTuple to store the particle energies
-		const G4int ntupleId1 = analysisManager->CreateNtuple("Particle Spectrum", "Particle Spectrum");
+		// create nTuple to store the absolute energies
+		const G4int ntupleId1 = analysisManager->CreateNtuple("Absolute Energies", "Gamma Energies");
 		// The letters D, I, S, F correspond to types
-		analysisManager->CreateNtupleDColumn(ntupleId1, "Energy"); //   id = 0
+		analysisManager->CreateNtupleDColumn(ntupleId1, "AbsEnergy"); //   id = 0
 		analysisManager->FinishNtuple(ntupleId1);
+
+		// create nTuple for the relative energies
+		const G4int ntupleId2 = analysisManager->CreateNtuple("Relative Energies", "Gamma Energies");
+		analysisManager->CreateNtupleDColumn(ntupleId2, "RelEnergy");
+		analysisManager->FinishNtuple(ntupleId2);
+
 	}
 
 	RunAction::~RunAction() {
