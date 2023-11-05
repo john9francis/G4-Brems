@@ -19,20 +19,12 @@ namespace G4_BREMS {
 
 	void SteppingAction::UserSteppingAction(const G4Step* step) {
 		// Check if secondary particles are created (bremsstrahlung photons)
-		// and send them over to event action.
+		// and record in 2 ways: 1. the relative energy based on the electron that created it,
+		// and 2. the absolute energy of all photons generated. 
 
-		// set a flag to make sure we only get the first secondary
-		if (step->IsFirstStepInVolume()) {
-			fFirstSecondaryRecorded = false;
-		}
-
-		// end here if we already recorded a secondary 
-		if (fFirstSecondaryRecorded) { return; }
-
-		// check how many secondaries
-		G4int nSecondaryParticles = step->GetNumberOfSecondariesInCurrentStep();
-
+	
 		// end here if there were no secondaries
+		G4int nSecondaryParticles = step->GetNumberOfSecondariesInCurrentStep();
 		if (nSecondaryParticles == 0) { return; }
 
 
@@ -40,28 +32,22 @@ namespace G4_BREMS {
 		const std::vector<const G4Track*>* secondaries
 			= step->GetSecondaryInCurrentStep();
 
-		// get the first secondary, it should be a gamma
-		const G4Track* track = (*secondaries)[0];
+		// loop through, and send the gamma secondaries to analysis manager.
+		for (int i = 0; i < secondaries->size(); i++) {
 
-		// Check particle name
-		const G4ParticleDefinition* particle = track->GetParticleDefinition();
-		G4String particleName = particle->GetParticleName();
-		if (particleName != "gamma") { return; }
+			const G4Track* track = (*secondaries)[i];
 
+			G4String particleName = track->GetParticleDefinition()->GetParticleName();
 
-		// if it's a bremsstrahlung gamma, send the energy over to analysis
-		G4double energy = track->GetTotalEnergy();
+			// if it's a bremsstrahlung gamma, send the energy over to analysis
+			if (particleName == "gamma") {
+				G4double energy = track->GetTotalEnergy();
 
-		auto analysisManager = G4AnalysisManager::Instance();
-		analysisManager->FillNtupleDColumn(0, energy);
-		analysisManager->AddNtupleRow();
-
-		// set the flag because we got the gamma for this track
-		fFirstSecondaryRecorded = true;
-
-		// print to see the energy
-		//G4cout << G4BestUnit(energy, "Energy") << G4endl;
-
+				auto analysisManager = G4AnalysisManager::Instance();
+				analysisManager->FillNtupleDColumn(0, energy);
+				analysisManager->AddNtupleRow();
+			}
+		}
 
 	}
 	
