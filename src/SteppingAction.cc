@@ -34,6 +34,10 @@ namespace G4_BREMS {
 		if (nSecondaryParticles == 0) { return; }
 
 
+		// get electron energy for recording relative energies
+		G4double electronEnergy = step->GetPreStepPoint()->GetKineticEnergy();
+
+
 		// create a list of all secondary particles created in this step
 		const std::vector<const G4Track*>* secondaries
 			= step->GetSecondaryInCurrentStep();
@@ -47,17 +51,26 @@ namespace G4_BREMS {
 
 			// if it's a bremsstrahlung gamma, send the energy over to analysis
 			if (particleName == "gamma") {
-				G4double energy = track->GetTotalEnergy();
 
+				G4double energy = track->GetKineticEnergy();
+
+				// record absolute energy
 				auto analysisManager = G4AnalysisManager::Instance();
 				analysisManager->FillNtupleDColumn(absNTupleID, 0, energy);
 				analysisManager->AddNtupleRow(absNTupleID);
+
+				// record relative energy
+				G4double relEnergy = energy / electronEnergy;
+				analysisManager->FillNtupleDColumn(relNTupleID, 0, relEnergy);
+				analysisManager->AddNtupleRow(relNTupleID);
+
+
 			}
 		}
 
 
 
-		// Now for the relative energies. 
+		
 
 	}
 	
