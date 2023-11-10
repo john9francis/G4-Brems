@@ -71,6 +71,13 @@ namespace G4_BREMS
             false, 
             0);
 
+        // TEST VOLUME:
+        /*
+        G4Box* physTest = new G4Box("physWorld", 5 * cm, 5 * cm, 1 * mm);
+        G4LogicalVolume* logTest = new G4LogicalVolume(physTest, tungsten, "logTest");
+        new G4PVPlacement(nullptr, G4ThreeVector(0, 0, 5), logTest, "physTest", logicWorld, false, 0);
+        */
+
         // set the brems volume
         fBremsVolume = logicTarget;
 
