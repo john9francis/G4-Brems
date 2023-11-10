@@ -71,6 +71,9 @@ namespace G4_BREMS
             false, 
             0);
 
+        // set the brems volume
+        fBremsVolume = logicTarget;
+
 
         // finish by returning the world
         return physWorld;

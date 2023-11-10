@@ -6,12 +6,14 @@
 #include "G4RunManager.hh"
 
 #include "G4AnalysisManager.hh"
+#include "G4RunManager.hh"
 
 #include "G4UnitsTable.hh"
 
+#include "DetectorConstruction.hh"
+
 namespace G4_BREMS {
 	SteppingAction::SteppingAction() {
-		fFirstSecondaryRecorded = false;
 	}
 
 	SteppingAction::~SteppingAction() {
@@ -24,6 +26,19 @@ namespace G4_BREMS {
 		// NOTE: set a condition to make sure it is in the correct volume,
 		// if there were other detectors that possible generate secondary gammas, they will be recorded as well.
 		
+		// first, return if we're not in the fBremsVolume:
+		if (!fBremsVolume) {
+			const auto detConstruction = static_cast<const DetectorConstruction*>(
+				G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+			fBremsVolume = detConstruction->GetBremsVolume();
+		}
+
+		G4LogicalVolume* currentVolume =
+			step->GetPreStepPoint()->GetTouchableHandle()
+			->GetVolume()->GetLogicalVolume();
+
+		if (currentVolume != fBremsVolume) { return; }
+
 
 		// set nTuple id's for analysis
 		G4int absNTupleID = 0;
@@ -33,6 +48,7 @@ namespace G4_BREMS {
 		G4int nSecondaryParticles = step->GetNumberOfSecondariesInCurrentStep();
 		if (nSecondaryParticles == 0) { return; }
 
+		G4cout << "Secondary generated" << G4endl;
 
 		// get electron energy for recording relative energies
 		G4double electronEnergy = step->GetPreStepPoint()->GetKineticEnergy();

@@ -14,8 +14,9 @@ namespace G4_BREMS {
 		~SteppingAction();
 
 		void UserSteppingAction(const G4Step*) override;
+
 	private:
-		G4bool fFirstSecondaryRecorded;
+		G4LogicalVolume* fBremsVolume = nullptr;
 	};
 
 }

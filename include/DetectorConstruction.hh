@@ -13,6 +13,11 @@ namespace G4_BREMS
 
 		G4VPhysicalVolume* Construct() override;
 
+		G4LogicalVolume* GetBremsVolume() const { return fBremsVolume; };
+
+	private:
+		G4LogicalVolume* fBremsVolume = nullptr;
+
 	};
 }
 
