@@ -48,8 +48,6 @@ namespace G4_BREMS {
 		G4int nSecondaryParticles = step->GetNumberOfSecondariesInCurrentStep();
 		if (nSecondaryParticles == 0) { return; }
 
-		G4cout << "Secondary generated" << G4endl;
-
 		// get electron energy for recording relative energies
 		G4double electronEnergy = step->GetPreStepPoint()->GetKineticEnergy();
 
